@@ -17,6 +17,7 @@ sqlalchemy-serializer = "*"
 flask-cors = "*"
 flask-bcrypt = "*"
 python-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 
