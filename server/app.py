@@ -2,7 +2,7 @@ from flask import Flask, make_response, jsonify, request, session, render_templa
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import datetime
-from models import db, Park, User
+from models import db, Park, User, Comment, Post
 from flask_cors import CORS
 from dotenv import dotenv_values
 from flask_bcrypt import Bcrypt
@@ -24,11 +24,20 @@ db.init_app(app)
 def index():
     return "national parks backend"
 
-#! Causing recursion
-# @app.get("/users")
-# def get_users():
-#     users = User.query.all()
-#     return [u.to_dict(rules=['-posts.user', '-comments.user', '-follower_list.follower', '-following_list.following']) for u in users]
+@app.get("/users")
+def get_users():
+    users = User.query.all()
+    return [u.to_dict() for u in users]
+
+@app.get("/comments")
+def get_comments():
+    comments = Comment.query.all()
+    return [c.to_dict() for c in comments]
+
+@app.get("/posts")
+def get_posts():
+    posts = Post.query.all()
+    return [p.to_dict() for p in posts]
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
