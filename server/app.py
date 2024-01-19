@@ -39,5 +39,10 @@ def get_posts():
     posts = Post.query.all()
     return [p.to_dict() for p in posts]
 
+@app.get("/parks")
+def get_parks():
+    parks = Park.query.all()
+    return [p.to_dict(rules=['-posts.comments']) for p in parks]
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
