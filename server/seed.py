@@ -1,17 +1,5 @@
 from app import app
-from models import db, User, Post, Park, Comment, Follow
-import json
-from flask_bcrypt import Bcrypt
-
-if __name__ == "__main__":
-    with app.app_context():
-        bcrypt = Bcrypt(app)
-        data = {}
-        with open("db.json") as f:
-            data = json.load(f)
-
-        from app import app
-from models import db, User, Post, Park, Comment, Follow
+from models import db, User, Post, Park, Comment
 import json
 from flask_bcrypt import Bcrypt
 
@@ -26,7 +14,6 @@ if __name__ == "__main__":
         Post.query.delete()
         Park.query.delete()
         Comment.query.delete()
-        Follow.query.delete()
 
         # Seed data
         print("seeding data...")
@@ -50,9 +37,6 @@ if __name__ == "__main__":
 
         for comment_data in data["comment_table"]:
             db.session.add(Comment(**comment_data))
-
-        for follow_data in data["follower_table"]:
-            db.session.add(Follow(**follow_data))
 
         db.session.commit()
         print("seeding complete!")
