@@ -832,452 +832,452 @@
   "comment_table": [
     {
       "id": 1,
-      "comment": "Wow, those arches are amazing!",
+      "comment_text": "Wow, those arches are amazing!",
       "user_id": 5,
       "post_id": 1
     },
     {
       "id": 2,
-      "comment": "Nature's art at its finest!",
+      "comment_text": "Nature's art at its finest!",
       "user_id": 2,
       "post_id": 2
     },
     {
       "id": 3,
-      "comment": "The Rio Grande landscapes are breathtaking.",
+      "comment_text": "The Rio Grande landscapes are breathtaking.",
       "user_id": 8,
       "post_id": 3
     },
     {
       "id": 4,
-      "comment": "Underwater wonders indeed! Fascinating.",
+      "comment_text": "Underwater wonders indeed! Fascinating.",
       "user_id": 3,
       "post_id": 4
     },
     {
       "id": 5,
-      "comment": "The canyon's depth is awe-inspiring.",
+      "comment_text": "The canyon's depth is awe-inspiring.",
       "user_id": 6,
       "post_id": 5
     },
     {
       "id": 6,
-      "comment": "Hoodoos and amphitheaters create a surreal landscape.",
+      "comment_text": "Hoodoos and amphitheaters create a surreal landscape.",
       "user_id": 1,
       "post_id": 6
     },
     {
       "id": 7,
-      "comment": "Utah's canyons are like another world.",
+      "comment_text": "Utah's canyons are like another world.",
       "user_id": 7,
       "post_id": 7
     },
     {
       "id": 8,
-      "comment": "Scenic drives and unique formations – a perfect combo!",
+      "comment_text": "Scenic drives and unique formations – a perfect combo!",
       "user_id": 9,
       "post_id": 8
     },
     {
       "id": 9,
-      "comment": "Exploring underground caves must be thrilling!",
+      "comment_text": "Exploring underground caves must be thrilling!",
       "user_id": 4,
       "post_id": 9
     },
     {
       "id": 10,
-      "comment": "Rugged islands off California sound like a dream.",
+      "comment_text": "Rugged islands off California sound like a dream.",
       "user_id": 10,
       "post_id": 10
     },
     {
       "id": 11,
-      "comment": "Old growth forests are precious treasures.",
+      "comment_text": "Old growth forests are precious treasures.",
       "user_id": 2,
       "post_id": 11
     },
     {
       "id": 12,
-      "comment": "That blue of Crater Lake is surreal!",
+      "comment_text": "That blue of Crater Lake is surreal!",
       "user_id": 5,
       "post_id": 12
     },
     {
       "id": 13,
-      "comment": "The beauty of the Cuyahoga River is mesmerizing.",
+      "comment_text": "The beauty of the Cuyahoga River is mesmerizing.",
       "user_id": 8,
       "post_id": 13
     },
     {
       "id": 14,
-      "comment": "Extreme temperatures, extreme beauty!",
+      "comment_text": "Extreme temperatures, extreme beauty!",
       "user_id": 3,
       "post_id": 14
     },
     {
       "id": 15,
-      "comment": "Denali's peak is a sight to behold!",
+      "comment_text": "Denali's peak is a sight to behold!",
       "user_id": 7,
       "post_id": 15
     },
     {
       "id": 16,
-      "comment": "Seven islands and a historic fort – a historical adventure!",
+      "comment_text": "Seven islands and a historic fort – a historical adventure!",
       "user_id": 1,
       "post_id": 16
     },
     {
       "id": 17,
-      "comment": "Everglades, a vast and fascinating wetland.",
+      "comment_text": "Everglades, a vast and fascinating wetland.",
       "user_id": 9,
       "post_id": 17
     },
     {
       "id": 18,
-      "comment": "Wild and untamed, just like Alaska itself.",
+      "comment_text": "Wild and untamed, just like Alaska itself.",
       "user_id": 6,
       "post_id": 18
     },
     {
       "id": 19,
-      "comment": "The Gateway Arch is an iconic symbol!",
+      "comment_text": "The Gateway Arch is an iconic symbol!",
       "user_id": 4,
       "post_id": 19
     },
     {
       "id": 20,
-      "comment": "Glaciers, mountains, and marine life – a perfect trifecta!",
+      "comment_text": "Glaciers, mountains, and marine life – a perfect trifecta!",
       "user_id": 8,
       "post_id": 20
     },
     {
       "id": 21,
-      "comment": "Glacier-carved peaks and valleys create a stunning landscape.",
+      "comment_text": "Glacier-carved peaks and valleys create a stunning landscape.",
       "user_id": 7,
       "post_id": 21
     },
     {
       "id": 22,
-      "comment": "The Grand Canyon's views are beyond words.",
+      "comment_text": "The Grand Canyon's views are beyond words.",
       "user_id": 2,
       "post_id": 22
     },
     {
       "id": 23,
-      "comment": "The Teton mountain range is simply majestic.",
+      "comment_text": "The Teton mountain range is simply majestic.",
       "user_id": 3,
       "post_id": 23
     },
     {
       "id": 24,
-      "comment": "Diverse landscapes and Lehman Caves make Great Basin unique.",
+      "comment_text": "Diverse landscapes and Lehman Caves make Great Basin unique.",
       "user_id": 1,
       "post_id": 24
     },
     {
       "id": 25,
-      "comment": "Tallest sand dunes? Count me in for an adventure!",
+      "comment_text": "Tallest sand dunes? Count me in for an adventure!",
       "user_id": 5,
       "post_id": 25
     },
     {
       "id": 26,
-      "comment": "The beauty that straddles two states is awe-inspiring.",
+      "comment_text": "The beauty that straddles two states is awe-inspiring.",
       "user_id": 10,
       "post_id": 26
     },
     {
       "id": 27,
-      "comment": "Rugged mountain landscapes at their best.",
+      "comment_text": "Rugged mountain landscapes at their best.",
       "user_id": 6,
       "post_id": 27
     },
     {
       "id": 28,
-      "comment": "Maui's unique ecosystems are worth preserving.",
+      "comment_text": "Maui's unique ecosystems are worth preserving.",
       "user_id": 9,
       "post_id": 28
     },
     {
       "id": 29,
-      "comment": "Two of the world's most active volcanoes – an incredible sight!",
+      "comment_text": "Two of the world's most active volcanoes – an incredible sight!",
       "user_id": 4,
       "post_id": 29
     },
     {
       "id": 30,
-      "comment": "Thermal hot springs – a natural spa experience!",
+      "comment_text": "Thermal hot springs – a natural spa experience!",
       "user_id": 7,
       "post_id": 30
     },
     {
       "id": 31,
-      "comment": "Preserving sand dunes on Lake Michigan's shore is vital.",
+      "comment_text": "Preserving sand dunes on Lake Michigan's shore is vital.",
       "user_id": 8,
       "post_id": 31
     },
     {
       "id": 32,
-      "comment": "An isolated island wilderness in Lake Superior – nature at its finest.",
+      "comment_text": "An isolated island wilderness in Lake Superior – nature at its finest.",
       "user_id": 3,
       "post_id": 32
     },
     {
       "id": 33,
-      "comment": "Joshua Tree's unique trees and rock formations are captivating.",
+      "comment_text": "Joshua Tree's unique trees and rock formations are captivating.",
       "user_id": 1,
       "post_id": 33
     },
     {
       "id": 34,
-      "comment": "Diverse wildlife and volcanic landscapes make Katmai special.",
+      "comment_text": "Diverse wildlife and volcanic landscapes make Katmai special.",
       "user_id": 2,
       "post_id": 34
     },
     {
       "id": 35,
-      "comment": "Cruising through fjords and glaciers – an unforgettable experience.",
+      "comment_text": "Cruising through fjords and glaciers – an unforgettable experience.",
       "user_id": 5,
       "post_id": 35
     },
     {
       "id": 36,
-      "comment": "Deep canyons and granite peaks create a dramatic landscape.",
+      "comment_text": "Deep canyons and granite peaks create a dramatic landscape.",
       "user_id": 9,
       "post_id": 36
     },
     {
       "id": 37,
-      "comment": "Preserving Arctic ecosystems and sand dunes is crucial.",
+      "comment_text": "Preserving Arctic ecosystems and sand dunes is crucial.",
       "user_id": 4,
       "post_id": 37
     },
     {
       "id": 38,
-      "comment": "Lakes, glaciers, and diverse landscapes – a natural spectacle.",
+      "comment_text": "Lakes, glaciers, and diverse landscapes – a natural spectacle.",
       "user_id": 6,
       "post_id": 38
     },
     {
       "id": 39,
-      "comment": "Active volcanoes and hydrothermal features – a geological wonder.",
+      "comment_text": "Active volcanoes and hydrothermal features – a geological wonder.",
       "user_id": 7,
       "post_id": 39
     },
     {
       "id": 40,
-      "comment": "The world's longest known cave system – a subterranean adventure!",
+      "comment_text": "The world's longest known cave system – a subterranean adventure!",
       "user_id": 8,
       "post_id": 40
     },
     {
       "id": 41,
-      "comment": "Ancient Puebloan cliff dwellings tell a fascinating story.",
+      "comment_text": "Ancient Puebloan cliff dwellings tell a fascinating story.",
       "user_id": 3,
       "post_id": 41
     },
     {
       "id": 42,
-      "comment": "Mount Rainier, an iconic peak against the sky.",
+      "comment_text": "Mount Rainier, an iconic peak against the sky.",
       "user_id": 1,
       "post_id": 42
     },
     {
       "id": 43,
-      "comment": "Preserving unique ecosystems in American Samoa is important.",
+      "comment_text": "Preserving unique ecosystems in American Samoa is important.",
       "user_id": 2,
       "post_id": 43
     },
     {
       "id": 44,
-      "comment": "The New River Gorge in West Virginia is a hidden gem.",
+      "comment_text": "The New River Gorge in West Virginia is a hidden gem.",
       "user_id": 5,
       "post_id": 44
     },
     {
       "id": 45,
-      "comment": "Rugged mountains and glaciers create a stunning landscape.",
+      "comment_text": "Rugged mountains and glaciers create a stunning landscape.",
       "user_id": 10,
       "post_id": 45
     },
     {
       "id": 46,
-      "comment": "Diverse ecosystems from mountains to coastline – a natural wonder.",
+      "comment_text": "Diverse ecosystems from mountains to coastline – a natural wonder.",
       "user_id": 9,
       "post_id": 46
     },
     {
       "id": 47,
-      "comment": "Colorful petrified wood and fossils tell Earth's ancient story.",
+      "comment_text": "Colorful petrified wood and fossils tell Earth's ancient story.",
       "user_id": 6,
       "post_id": 47
     },
     {
       "id": 48,
-      "comment": "Unique rock formations and caves make Pinnacles intriguing.",
+      "comment_text": "Unique rock formations and caves make Pinnacles intriguing.",
       "user_id": 4,
       "post_id": 48
     },
     {
       "id": 49,
-      "comment": "Towering redwood trees – nature's skyscrapers.",
+      "comment_text": "Towering redwood trees – nature's skyscrapers.",
       "user_id": 8,
       "post_id": 49
     },
     {
       "id": 50,
-      "comment": "Majestic mountain views at their finest.",
+      "comment_text": "Majestic mountain views at their finest.",
       "user_id": 7,
       "post_id": 50
     },
     {
       "id": 51,
-      "comment": "Giant saguaro cactus – a symbol of the desert.",
+      "comment_text": "Giant saguaro cactus – a symbol of the desert.",
       "user_id": 3,
       "post_id": 51
     },
     {
       "id": 52,
-      "comment": "Giant sequoia trees are truly giants of the forest.",
+      "comment_text": "Giant sequoia trees are truly giants of the forest.",
       "user_id": 1,
       "post_id": 52
     },
     {
       "id": 53,
-      "comment": "Preserving the Blue Ridge Mountains is essential for our future.",
+      "comment_text": "Preserving the Blue Ridge Mountains is essential for our future.",
       "user_id": 2,
       "post_id": 53
     },
     {
       "id": 54,
-      "comment": "Honoring the legacy of President Theodore Roosevelt is admirable.",
+      "comment_text": "Honoring the legacy of President Theodore Roosevelt is admirable.",
       "user_id": 5,
       "post_id": 54
     },
     {
       "id": 55,
-      "comment": "Preserving the natural and cultural resources of the Virgin Islands is crucial.",
+      "comment_text": "Preserving the natural and cultural resources of the Virgin Islands is crucial.",
       "user_id": 10,
       "post_id": 55
     },
     {
       "id": 56,
-      "comment": "Lakes, islands, and forests – a perfect combination.",
+      "comment_text": "Lakes, islands, and forests – a perfect combination.",
       "user_id": 6,
       "post_id": 56
     },
     {
       "id": 57,
-      "comment": "White gypsum sand dunes – a unique and mesmerizing landscape.",
+      "comment_text": "White gypsum sand dunes – a unique and mesmerizing landscape.",
       "user_id": 9,
       "post_id": 57
     },
     {
       "id": 58,
-      "comment": "One of the world's longest caves – a mysterious underworld.",
+      "comment_text": "One of the world's longest caves – a mysterious underworld.",
       "user_id": 4,
       "post_id": 58
     },
     {
       "id": 59,
-      "comment": "Venturing into the largest national park is an adventure of a lifetime.",
+      "comment_text": "Venturing into the largest national park is an adventure of a lifetime.",
       "user_id": 8,
       "post_id": 59
     },
     {
       "id": 60,
-      "comment": "Visiting America's first national park is a historical experience.",
+      "comment_text": "Visiting America's first national park is a historical experience.",
       "user_id": 7,
       "post_id": 60
     },
     {
       "id": 61,
-      "comment": "The waterfalls and giant sequoias at Yosemite are awe-inspiring.",
+      "comment_text": "The waterfalls and giant sequoias at Yosemite are awe-inspiring.",
       "user_id": 3,
       "post_id": 61
     },
     {
       "id": 62,
-      "comment": "Stunning red rock formations at Zion – a geological masterpiece.",
+      "comment_text": "Stunning red rock formations at Zion – a geological masterpiece.",
       "user_id": 1,
       "post_id": 62
     }
   ],
-  "follower_table": [
+  "follower_relationship": [
     {
       "id": 1,
       "follower_id": 1,
-      "following_id": 2
+      "followed_id": 2
     },
     {
       "id": 2,
       "follower_id": 1,
-      "following_id": 3
+      "followed_id": 3
     },
     {
       "id": 3,
       "follower_id": 1,
-      "following_id": 4
+      "followed_id": 4
     },
     {
       "id": 4,
       "follower_id": 1,
-      "following_id": 5
+      "followed_id": 5
     },
     {
       "id": 5,
       "follower_id": 1,
-      "following_id": 6
+      "followed_id": 6
     },
     {
       "id": 6,
       "follower_id": 1,
-      "following_id": 7
+      "followed_id": 7
     },
     {
       "id": 7,
       "follower_id": 1,
-      "following_id": 8
+      "followed_id": 8
     },
     {
       "id": 8,
       "follower_id": 1,
-      "following_id": 9
+      "followed_id": 9
     },
     {
       "id": 9,
       "follower_id": 1,
-      "following_id": 10
+      "followed_id": 10
     },
     {
       "id": 10,
       "follower_id": 2,
-      "following_id": 1
+      "followed_id": 1
     },
     {
       "id": 11,
       "follower_id": 2,
-      "following_id": 3
+      "followed_id": 3
     },
     {
       "id": 12,
       "follower_id": 2,
-      "following_id": 4
+      "followed_id": 4
     },
     {
       "id": 13,
       "follower_id": 2,
-      "following_id": 5
+      "followed_id": 5
     },
     {
       "id": 14,
       "follower_id": 2,
-      "following_id": 6
+      "followed_id": 6
     },
     {
       "id": 15,
       "follower_id": 8,
-      "following_id": 7
+      "followed_id": 7
     }
   ]
 }

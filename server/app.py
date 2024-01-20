@@ -27,7 +27,8 @@ def index():
 @app.get("/users")
 def get_users():
     users = User.query.all()
-    return [u.to_dict() for u in users]
+    return [u.to_dict(rules=['-password', '-posts.comments', '-posts.description', '-posts.id', '-posts.name']) for u in users]
+
 
 @app.get("/comments")
 def get_comments():

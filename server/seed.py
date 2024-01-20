@@ -1,5 +1,5 @@
 from app import app
-from models import db, User, Post, Park, Comment
+from models import db, User, Post, Park, Comment, follower_relationship
 import json
 from flask_bcrypt import Bcrypt
 
@@ -14,6 +14,7 @@ if __name__ == "__main__":
         Post.query.delete()
         Park.query.delete()
         Comment.query.delete()
+        db.session.execute(f'DELETE FROM {follower_relationship.name}')
 
         # Seed data
         print("seeding data...")
@@ -37,6 +38,10 @@ if __name__ == "__main__":
 
         for comment_data in data["comment_table"]:
             db.session.add(Comment(**comment_data))
+
+        for follower_relationship_data in data['follower_relationship']:
+            stmt = follower_relationship.insert().values(follower_id=follower_relationship_data['follower_id'], followed_id=follower_relationship_data['followed_id'])
+            db.session.execute(stmt)
 
         db.session.commit()
         print("seeding complete!")
