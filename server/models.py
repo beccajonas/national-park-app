@@ -59,6 +59,7 @@ class Post(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     caption = db.Column(db.String(255), nullable=False)
     likes = db.Column(db.Integer, default=0)
+    photo_url = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     park_id = db.Column(db.Integer, db.ForeignKey('park_table.id'))
