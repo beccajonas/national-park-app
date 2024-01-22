@@ -39,5 +39,6 @@ def get_posts():
     posts = Post.query.all()
     return [p.to_dict() for p in posts]
 
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
