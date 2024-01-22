@@ -1,17 +1,39 @@
+// Navigation.jsx
+
 import React from "react";
+import { NavLink } from "react-router-dom";
+import SearchParks from "./SearchParks";
 
 const Navigation = () => {
   return (
     <nav>
       <ul>
         <li>
-          <a href="/">Home</a>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <a href="/about">About</a>
+          <NavLink
+            to="/account"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Sign In
+          </NavLink>
         </li>
         <li>
-          <a href="/national-parks">National Parks</a>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            About
+          </NavLink>
+        </li>
+        <li>
+          <SearchParks />
         </li>
       </ul>
     </nav>

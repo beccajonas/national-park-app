@@ -75,6 +75,7 @@ def get_parks_by_id(id):
     park = db.session.get(Park, id)
     return park.to_dict()
 
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
