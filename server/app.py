@@ -6,18 +6,28 @@ from models import db, Park, User, Comment, Post
 from flask_cors import CORS
 from dotenv import dotenv_values
 from flask_bcrypt import Bcrypt
+import boto3
+from botocore.exceptions import NoCredentialsError
+from werkzeug.utils import secure_filename
+
 config = dotenv_values(".env")
 
 app = Flask(__name__)
 app.secret_key = config['FLASK_SECRET_KEY']
 CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
+app.config['FLASKS3_BUCKET_NAME'] = config['FLASKS3_BUCKET_NAME']
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.json.compact = False
 bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 
 db.init_app(app)
+
+AWS_ACCESS_KEY = config['AWS_ACCESS_KEY_ID']
+AWS_REGION = config['AWS_REGION']
+AWS_SECRET_KEY = config['AWS_SECRET_KEY']
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
 
 @app.get("/")
 def index():
@@ -52,6 +62,41 @@ def login():
 def logout():
     session.pop('user_id')
     return { "message": "Logged out"}, 200
+
+@app.post('/upload')
+def upload_photo():
+    if 'file' not in request.files:
+        return "No file"
+    
+    file = request.files['file']
+    data = request.json
+
+    if file.filename == '':
+        return "No selected file"
+    
+    try:
+        # Upload file to S3
+        s3 = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, region_name=AWS_REGION)
+        bucket = s3.Bucket(app.config['FLASKS3_BUCKET_NAME'])
+        bucket.upload_fileobj(file, file.filename)
+
+        new_post = Post(
+            caption=data.get['caption'],
+            likes=0,
+            photo_url=f"https://{app.config['FLASKS3_BUCKET_NAME']}.s3.{AWS_REGION}.amazonaws.com/{file.filename}",
+            user_id=data.get['user_id'],
+            park_id=data.get['park_id']  
+        )
+
+        db.session.add(new_post)
+        db.session.commit()
+
+        return new_post.to_dict(rules=['-user'])
+    
+    except NoCredentialsError:
+        return "Credentials not available"
+
+    
 
 # Post user
 @app.post('/users')

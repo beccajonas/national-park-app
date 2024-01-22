@@ -18,6 +18,8 @@ flask-cors = "*"
 flask-bcrypt = "*"
 python-dotenv = "*"
 requests = "*"
+boto3 = "*"
+botocore = "*"
 
 [dev-packages]
 
