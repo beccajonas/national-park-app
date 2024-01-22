@@ -5,7 +5,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
 import string, datetime
-from dotenv import load_dotenvgit
+from dotenv import load_dotenv
 import requests
 
 load_dotenv()
@@ -24,10 +24,16 @@ metadata = MetaData(
 )
 db = SQLAlchemy(metadata=metadata)
 
+follower_relationship = db.Table(
+    'follower_relationship', metadata,
+    db.Column('follower_id', db.Integer, db.ForeignKey('user_table.id'), primary_key=True),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user_table.id'), primary_key=True),
+)
+
 class User(db.Model, SerializerMixin):
     __tablename__ = 'user_table'
 
-    serialize_rules = ['-comments']
+    serialize_rules = ['-comments', '-followers.posts', '-followers.followers','-followers.password', '-posts.comments', '-posts.user']
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True)
@@ -39,10 +45,16 @@ class User(db.Model, SerializerMixin):
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
 
+    followers = db.relationship('User', 
+                                secondary = follower_relationship, 
+                                primaryjoin = (follower_relationship.c.followed_id == id),
+                                secondaryjoin = (follower_relationship.c.follower_id == id),
+                                )
+
 class Post(db.Model, SerializerMixin):
     __tablename__ = 'post_table'
 
-    serialize_rules=['-user.posts','-park.posts', '-comments.post']
+    serialize_rules=['-user.posts','-park.posts', '-comments.post', '-comments.user']
 
     id = db.Column(db.Integer, primary_key=True)
     caption = db.Column(db.String(255), nullable=False)
@@ -73,7 +85,7 @@ class Comment(db.Model, SerializerMixin):
     serialize_rules=['-user.comments', '-post.comments', '-user.posts']
 
     id = db.Column(db.Integer, primary_key=True)
-    comment = db.Column(db.String(255), nullable=False)
+    comment_text = db.Column(db.String(255), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post_table.id'))
