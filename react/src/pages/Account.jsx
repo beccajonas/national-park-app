@@ -25,7 +25,7 @@ const Account = () => {
 
     if (!isLoggingIn) {
       try {
-        const response = await fetch("/api/users", {
+        const response = await fetch("http://localhost:5555/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -38,20 +38,17 @@ const Account = () => {
           }),
         });
 
-        // Check if the response has content
         if (
           response.headers.get("content-length") === "0" ||
           response.status === 204
         ) {
           console.log("Account created successfully");
-          // Handle successful account creation here
           return;
         }
 
         const data = await response.json();
         if (response.ok) {
           console.log("Account created:", data);
-          // Handle successful account creation with data
         } else {
           console.error("Error creating account:", data);
         }
@@ -59,7 +56,6 @@ const Account = () => {
         console.error("Error:", error);
       }
     } else {
-      // Add login logic here if needed
     }
   };
 
