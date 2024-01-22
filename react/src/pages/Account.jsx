@@ -23,7 +23,29 @@ const Account = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!isLoggingIn) {
+    if (isLoggingIn) {
+      try {
+        const response = await fetch("http://localhost:5555/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: userData.username,
+            password: userData.password,
+          }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          console.log("Logged in:", data);
+        } else {
+          console.error("Error logging in:", data);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else {
       try {
         const response = await fetch("http://localhost:5555/users", {
           method: "POST",
@@ -55,7 +77,6 @@ const Account = () => {
       } catch (error) {
         console.error("Error:", error);
       }
-    } else {
     }
   };
 
@@ -64,7 +85,26 @@ const Account = () => {
       <div className="account-container">
         <h2>{isLoggingIn ? "Sign In" : "Sign Up"}</h2>
         <form onSubmit={handleSubmit}>
-          {!isLoggingIn && (
+          {isLoggingIn ? (
+            <>
+              <input
+                type="text"
+                placeholder="Username"
+                className="input-field"
+                name="username"
+                value={userData.username}
+                onChange={handleInputChange}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="input-field"
+                name="password"
+                value={userData.password}
+                onChange={handleInputChange}
+              />
+            </>
+          ) : (
             <>
               <input
                 type="text"
@@ -90,16 +130,16 @@ const Account = () => {
                 value={userData.username}
                 onChange={handleInputChange}
               />
+              <input
+                type="password"
+                placeholder="Password"
+                className="input-field"
+                name="password"
+                value={userData.password}
+                onChange={handleInputChange}
+              />
             </>
           )}
-          <input
-            type="password"
-            placeholder="Password"
-            className="input-field"
-            name="password"
-            value={userData.password}
-            onChange={handleInputChange}
-          />
           <button type="submit" className="action-button">
             {isLoggingIn ? "Log In" : "Sign Up"}
           </button>
