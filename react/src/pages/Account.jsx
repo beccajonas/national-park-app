@@ -5,8 +5,9 @@ import React, { useState } from "react";
 const Account = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
     username: "",
-    email: "",
     password: "",
   });
 
@@ -19,38 +20,82 @@ const Account = () => {
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle the user data
-    console.log("User Data:", userData);
-    // Add logic for registration or login here
+
+    if (!isLoggingIn) {
+      try {
+        const response = await fetch("/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: userData.firstName,
+            last_name: userData.lastName,
+            username: userData.username,
+            password: userData.password,
+          }),
+        });
+
+        // Check if the response has content
+        if (
+          response.headers.get("content-length") === "0" ||
+          response.status === 204
+        ) {
+          console.log("Account created successfully");
+          // Handle successful account creation here
+          return;
+        }
+
+        const data = await response.json();
+        if (response.ok) {
+          console.log("Account created:", data);
+          // Handle successful account creation with data
+        } else {
+          console.error("Error creating account:", data);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else {
+      // Add login logic here if needed
+    }
   };
 
   return (
     <div className="center-container">
-      {" "}
-      {/* Wrapper for centering */}
       <div className="account-container">
         <h2>{isLoggingIn ? "Sign In" : "Sign Up"}</h2>
         <form onSubmit={handleSubmit}>
           {!isLoggingIn && (
-            <input
-              type="text"
-              placeholder="Username"
-              className="input-field"
-              name="username"
-              value={userData.username}
-              onChange={handleInputChange}
-            />
+            <>
+              <input
+                type="text"
+                placeholder="First Name"
+                className="input-field"
+                name="firstName"
+                value={userData.firstName}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="input-field"
+                name="lastName"
+                value={userData.lastName}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                placeholder="Username"
+                className="input-field"
+                name="username"
+                value={userData.username}
+                onChange={handleInputChange}
+              />
+            </>
           )}
-          <input
-            type="email"
-            placeholder="Email"
-            className="input-field"
-            name="email"
-            value={userData.email}
-            onChange={handleInputChange}
-          />
           <input
             type="password"
             placeholder="Password"
