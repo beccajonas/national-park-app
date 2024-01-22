@@ -399,434 +399,496 @@
       "caption": "Exploring the natural sandstone arches at Arches National Park!",
       "likes": 120,
       "user_id": 10,
-      "park_id": 1
+      "park_id": 1,
+      "photo_url": ""
     },
     {
       "id": 2,
       "caption": "Admiring the striking geological formations in Badlands National Park.",
       "likes": 85,
       "user_id": 7,
-      "park_id": 2
+      "park_id": 2,
+      "photo_url": ""
     },
     {
       "id": 3,
       "caption": "Discovering diverse landscapes along the Rio Grande in Big Bend National Park.",
       "likes": 92,
       "user_id": 2,
-      "park_id": 3
+      "park_id": 3,
+      "photo_url": ""
     },
     {
       "id": 4,
       "caption": "Exploring the underwater wonders of Biscayne National Park in Florida.",
       "likes": 105,
       "user_id": 5,
-      "park_id": 4
+      "park_id": 4,
+      "photo_url": ""
     },
     {
       "id": 5,
       "caption": "Hiking through the deep, narrow canyon of Black Canyon of the Gunnison National Park.",
       "likes": 78,
       "user_id": 1,
-      "park_id": 5
+      "park_id": 5,
+      "photo_url": ""
     },
     {
       "id": 6,
       "caption": "Marveling at the unique hoodoos and amphitheaters in Bryce Canyon National Park.",
       "likes": 110,
       "user_id": 9,
-      "park_id": 6
+      "park_id": 6,
+      "photo_url": ""
     },
     {
       "id": 7,
       "caption": "Exploring the canyons, mesas, and buttes of Canyonlands National Park in Utah.",
       "likes": 95,
       "user_id": 4,
-      "park_id": 7
+      "park_id": 7,
+      "photo_url": ""
     },
     {
       "id": 8,
       "caption": "Enjoying the scenic drives and Waterpocket Fold in Capitol Reef National Park.",
       "likes": 88,
       "user_id": 8,
-      "park_id": 8
+      "park_id": 8,
+      "photo_url": ""
     },
     {
       "id": 9,
       "caption": "Venturing into the vast underground cave system of Carlsbad Caverns National Park.",
       "likes": 102,
       "user_id": 6,
-      "park_id": 9
+      "park_id": 9,
+      "photo_url": ""
     },
     {
       "id": 10,
       "caption": "Exploring the rugged islands off the California coast in Channel Islands National Park.",
       "likes": 115,
       "user_id": 3,
-      "park_id": 10
+      "park_id": 10,
+      "photo_url": ""
     },
     {
       "id": 11,
       "caption": "Preserving the largest tract of old growth bottomland hardwood forest at Congaree National Park.",
       "likes": 93,
       "user_id": 2,
-      "park_id": 11
+      "park_id": 11,
+      "photo_url": ""
     },
     {
       "id": 12,
       "caption": "Taking in the deep blue beauty of Crater Lake National Park.",
       "likes": 98,
       "user_id": 7,
-      "park_id": 12
+      "park_id": 12,
+      "photo_url": ""
     },
     {
       "id": 13,
       "caption": "Appreciating the beauty of the Cuyahoga River at Cuyahoga Valley National Park.",
       "likes": 87,
       "user_id": 1,
-      "park_id": 13
+      "park_id": 13,
+      "photo_url": ""
     },
     {
       "id": 14,
       "caption": "Enduring extreme temperatures and witnessing unique landscapes at Death Valley National Park.",
       "likes": 83,
       "user_id": 9,
-      "park_id": 14
+      "park_id": 14,
+      "photo_url": ""
     },
     {
       "id": 15,
       "caption": "Gazing at North America's highest peak, Denali, in Denali National Park.",
       "likes": 122,
       "user_id": 4,
-      "park_id": 15
+      "park_id": 15,
+      "photo_url": ""
     },
     {
       "id": 16,
       "caption": "Exploring the seven islands and historic Fort Jefferson at Dry Tortugas National Park.",
       "likes": 97,
       "user_id": 5,
-      "park_id": 16
+      "park_id": 16,
+      "photo_url": ""
     },
     {
       "id": 17,
       "caption": "Discovering the vast wetland of Everglades National Park in Florida.",
       "likes": 91,
       "user_id": 8,
-      "park_id": 17
+      "park_id": 17,
+      "photo_url": ""
     },
     {
       "id": 18,
       "caption": "Venturing into one of the wildest national parks in Alaska, Gates of the Arctic National Park.",
       "likes": 105,
       "user_id": 6,
-      "park_id": 18
+      "park_id": 18,
+      "photo_url": ""
     },
     {
       "id": 19,
       "caption": "Admiring the iconic Gateway Arch in St. Louis at Gateway Arch National Park.",
       "likes": 99,
       "user_id": 3,
-      "park_id": 19
+      "park_id": 19,
+      "photo_url": ""
     },
     {
       "id": 20,
       "caption": "Experiencing glaciers, mountains, and marine life at Glacier Bay National Park.",
       "likes": 114,
       "user_id": 2,
-      "park_id": 20
+      "park_id": 20,
+      "photo_url": ""
     },
     {
       "id": 21,
       "caption": "Hiking amidst glacier-carved peaks and valleys in Glacier National Park.",
       "likes": 118,
       "user_id": 7,
-      "park_id": 21
+      "park_id": 21,
+      "photo_url": ""
     },
     {
       "id": 22,
       "caption": "Taking in the breathtaking views of the iconic canyon at Grand Canyon National Park.",
       "likes": 123,
       "user_id": 1,
-      "park_id": 22
+      "park_id": 22,
+      "photo_url": ""
     },
     {
       "id": 23,
       "caption": "Exploring the Teton mountain range at Grand Teton National Park.",
       "likes": 97,
       "user_id": 9,
-      "park_id": 23
+      "park_id": 23,
+      "photo_url": ""
     },
     {
       "id": 24,
       "caption": "Discovering diverse landscapes and Lehman Caves at Great Basin National Park.",
       "likes": 101,
       "user_id": 4,
-      "park_id": 24
+      "park_id": 24,
+      "photo_url": ""
     },
     {
       "id": 25,
       "caption": "Climbing the tallest sand dunes in North America at Great Sand Dunes National Park.",
       "likes": 110,
       "user_id": 8,
-      "park_id": 25
+      "park_id": 25,
+      "photo_url": ""
     },
     {
       "id": 26,
       "caption": "Exploring the beauty straddling the border between North Carolina and Tennessee at Great Smoky Mountains National Park.",
       "likes": 95,
       "user_id": 6,
-      "park_id": 26
+      "park_id": 26,
+      "photo_url": ""
     },
     {
       "id": 27,
       "caption": "Taking in the rugged mountain landscapes at Guadalupe Mountains National Park.",
       "likes": 96,
       "user_id": 3,
-      "park_id": 27
+      "park_id": 27,
+      "photo_url": ""
     },
     {
       "id": 28,
       "caption": "Preserving the unique ecosystems of Maui at Haleakalā National Park.",
       "likes": 92,
       "user_id": 2,
-      "park_id": 28
+      "park_id": 28,
+      "photo_url": ""
     },
     {
       "id": 29,
       "caption": "Witnessing two of the world's most active volcanoes at Hawaiʻi Volcanoes National Park.",
       "likes": 116,
       "user_id": 7,
-      "park_id": 29
+      "park_id": 29,
+      "photo_url": ""
     },
     {
       "id": 30,
       "caption": "Relaxing in the thermal hot springs of Hot Springs National Park.",
       "likes": 89,
       "user_id": 1,
-      "park_id": 30
+      "park_id": 30,
+      "photo_url": ""
     },
     {
       "id": 31,
       "caption": "Preserving sand dunes on the shore of Lake Michigan at Indiana Dunes National Park.",
       "likes": 94,
       "user_id": 5,
-      "park_id": 31
+      "park_id": 31,
+      "photo_url": ""
     },
     {
       "id": 32,
       "caption": "Exploring the isolated island wilderness in Lake Superior at Isle Royale National Park.",
       "likes": 103,
       "user_id": 9,
-      "park_id": 32
+      "park_id": 32,
+      "photo_url": ""
     },
     {
       "id": 33,
       "caption": "Marveling at the unique Joshua trees and rock formations in Joshua Tree National Park.",
       "likes": 108,
       "user_id": 4,
-      "park_id": 33
+      "park_id": 33,
+      "photo_url": ""
     },
     {
       "id": 34,
       "caption": "Encountering diverse wildlife and volcanic landscapes at Katmai National Park.",
       "likes": 107,
       "user_id": 8,
-      "park_id": 34
+      "park_id": 34,
+      "photo_url": ""
     },
     {
       "id": 35,
       "caption": "Cruising through fjords, glaciers, and marine life at Kenai Fjords National Park.",
       "likes": 112,
       "user_id": 6,
-      "park_id": 35
+      "park_id": 35,
+      "photo_url": ""
     },
     {
       "id": 36,
       "caption": "Marveling at deep canyons and granite peaks in Kings Canyon National Park.",
       "likes": 99,
       "user_id": 3,
-      "park_id": 36
+      "park_id": 36,
+      "photo_url": ""
     },
     {
       "id": 37,
       "caption": "Preserving Arctic ecosystems and sand dunes at Kobuk Valley National Park.",
       "likes": 98,
       "user_id": 2,
-      "park_id": 37
+      "park_id": 37,
+      "photo_url": ""
     },
     {
       "id": 38,
       "caption": "Exploring lakes, glaciers, and diverse landscapes at Lake Clark National Park.",
       "likes": 104,
       "user_id": 7,
-      "park_id": 38
+      "park_id": 38,
+      "photo_url": ""
     },
     {
       "id": 39,
       "caption": "Witnessing active volcanoes and hydrothermal features at Lassen Volcanic National Park.",
       "likes": 114,
       "user_id": 1,
-      "park_id": 39
+      "park_id": 39,
+      "photo_url": ""
     },
     {
       "id": 40,
       "caption": "Venturing into the world's longest known cave system at Mammoth Cave National Park.",
       "likes": 88,
       "user_id": 9,
-      "park_id": 40
+      "park_id": 40,
+      "photo_url": ""
     },
     {
       "id": 41,
       "caption": "Preserving ancient Puebloan cliff dwellings at Mesa Verde National Park.",
       "likes": 91,
       "user_id": 4,
-      "park_id": 41
+      "park_id": 41,
+      "photo_url": ""
     },
     {
       "id": 42,
       "caption": "Gazing at the iconic Mount Rainier at Mount Rainier National Park.",
       "likes": 102,
       "user_id": 8,
-      "park_id": 42
+      "park_id": 42,
+      "photo_url": ""
     },
     {
       "id": 43,
       "caption": "Preserving the unique ecosystems of American Samoa at National Park of American Samoa.",
       "likes": 97,
       "user_id": 6,
-      "park_id": 43
+      "park_id": 43,
+      "photo_url": ""
     },
     {
       "id": 44,
       "caption": "Showcasing the New River Gorge in West Virginia at New River Gorge National Park and Preserve.",
       "likes": 100,
       "user_id": 3,
-      "park_id": 44
+      "park_id": 44,
+      "photo_url": ""
     },
     {
       "id": 45,
       "caption": "Feasting your eyes on rugged mountains and glaciers at North Cascades National Park.",
       "likes": 109,
       "user_id": 2,
-      "park_id": 45
+      "park_id": 45,
+      "photo_url": ""
     },
     {
       "id": 46,
       "caption": "Preserving diverse ecosystems from mountains to coastline at Olympic National Park.",
       "likes": 119,
       "user_id": 7,
-      "park_id": 46
+      "park_id": 46,
+      "photo_url": ""
     },
     {
       "id": 47,
       "caption": "Exploring colorful petrified wood and fossils at Petrified Forest National Park.",
       "likes": 103,
       "user_id": 1,
-      "park_id": 47
+      "park_id": 47,
+      "photo_url": ""
     },
     {
       "id": 48,
       "caption": "Marveling at unique rock formations and caves at Pinnacles National Park.",
       "likes": 95,
       "user_id": 9,
-      "park_id": 48
+      "park_id": 48,
+      "photo_url": ""
     },
     {
       "id": 49,
       "caption": "Preserving towering redwood trees at Redwood National Park.",
       "likes": 106,
       "user_id": 4,
-      "park_id": 49
+      "park_id": 49,
+      "photo_url": ""
     },
     {
       "id": 50,
       "caption": "Featuring majestic mountain views at Rocky Mountain National Park.",
       "likes": 117,
       "user_id": 8,
-      "park_id": 50
+      "park_id": 50,
+      "photo_url": ""
     },
     {
       "id": 51,
       "caption": "Admiring the giant saguaro cactus at Saguaro National Park.",
       "likes": 101,
       "user_id": 6,
-      "park_id": 51
+      "park_id": 51,
+      "photo_url": ""
     },
     {
       "id": 52,
       "caption": "Gazing at giant sequoia trees in Sequoia National Park.",
       "likes": 110,
       "user_id": 3,
-      "park_id": 52
+      "park_id": 52,
+      "photo_url": ""
     },
     {
       "id": 53,
       "caption": "Preserving the Blue Ridge Mountains in Virginia at Shenandoah National Park.",
       "likes": 93,
       "user_id": 2,
-      "park_id": 53
+      "park_id": 53,
+      "photo_url": ""
     },
     {
       "id": 54,
       "caption": "Honoring the legacy of President Theodore Roosevelt at Theodore Roosevelt National Park.",
       "likes": 96,
       "user_id": 7,
-      "park_id": 54
+      "park_id": 54,
+      "photo_url": ""
     },
     {
       "id": 55,
       "caption": "Preserving the natural and cultural resources of the Virgin Islands at Virgin Islands National Park.",
       "likes": 108,
       "user_id": 1,
-      "park_id": 55
+      "park_id": 55,
+      "photo_url": ""
     },
     {
       "id": 56,
       "caption": "Featuring lakes, islands, and forests in Minnesota at Voyageurs National Park.",
       "likes": 112,
       "user_id": 9,
-      "park_id": 56
+      "park_id": 56,
+      "photo_url": ""
     },
     {
       "id": 57,
       "caption": "Enjoying the white gypsum sand dunes at White Sands National Park.",
       "likes": 94,
       "user_id": 4,
-      "park_id": 57
+      "park_id": 57,
+      "photo_url": ""
     },
     {
       "id": 58,
       "caption": "Exploring one of the world's longest caves at Wind Cave National Park.",
       "likes": 99,
       "user_id": 8,
-      "park_id": 58
+      "park_id": 58,
+      "photo_url": ""
     },
     {
       "id": 59,
       "caption": "Venturing into the largest national park in the United States at Wrangell—St. Elias National Park.",
       "likes": 105,
       "user_id": 6,
-      "park_id": 59
+      "park_id": 59,
+      "photo_url": ""
     },
     {
       "id": 60,
       "caption": "Visiting America's first national park, Yellowstone National Park.",
       "likes": 120,
       "user_id": 3,
-      "park_id": 60
+      "park_id": 60,
+      "photo_url": ""
     },
     {
       "id": 61,
       "caption": "Falling in love with the waterfalls and giant sequoias at Yosemite National Park.",
       "likes": 115,
       "user_id": 2,
-      "park_id": 61
+      "park_id": 61,
+      "photo_url": ""
     },
     {
       "id": 62,
       "caption": "Admiring the stunning red rock formations at Zion National Park.",
       "likes": 150,
       "user_id": 8,
-      "park_id": 62
+      "park_id": 62,
+      "photo_url": ""
     }
   ],
   "comment_table": [
