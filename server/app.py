@@ -19,14 +19,69 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
-# Get requests
 @app.get("/")
 def index():
     return "national parks backend"
+
+# Check session
+@app.get('/check_session')
+def check_session():
+    user = db.session.get(User, session.get('user_id'))
+    print(f'check session {session.get("user_id")}')
+    if user:
+        return user.to_dict(rules=['-password']), 200
+    else:
+        return {"message": "No user logged in"}, 401
+    
+# Login
+@app.post('/login')
+def login():
+    data = request.json
+
+    user = User.query.filter(User.username == data.get('username')).first()
+
+    if user and bcrypt.check_password_hash(user.password, data.get('password')):
+        session["user_id"] = user.id
+        print("success")
+        return user.to_dict(), 200
+    else:
+        return { "error": "Invalid username or password" }, 401
+    
+# Logout
+@app.delete('/logout')
+def logout():
+    session.pop('user_id')
+    return { "message": "Logged out"}, 200
+
+# Post user
+@app.post('/users')
+def post_new_user():
+    try:
+        data = request.json
+
+        hashed_password = bcrypt.generate_password_hash(data.get("password"))
+
+
+        new_user = User(
+            username=data.get("username"),
+            first_name=data.get("first_name"),
+            last_name=data.get("last_name"),
+            password=hashed_password,
+            bio=data.get("bio")
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        return new_user.to_dict(rules=['-password']), 201
+    
+    except Exception as e:
+        return {"Error": str(e)}, 400
+
 # Post posts
 @app.post('/posts')
 def post_photo():
-    print('reached')
+
     try:
         data = request.json
 
@@ -44,6 +99,7 @@ def post_photo():
     except Exception as e:
         return jsonify({"Error": str(e)}), 400 
 
+# Get requests
 @app.get("/users")
 def get_users():
     users = User.query.all()

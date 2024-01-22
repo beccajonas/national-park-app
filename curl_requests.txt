@@ -1,1 +1,9 @@
+# POST post
 curl -X POST -H "Content-Type:application/json" -d '{"caption": "test post!","user_id": 1,"park_id": 1}' localhost:5555/posts
+curl -H 'Content-Type: application/json' \
+      -d '{ "caption":"test","user_id":1, "park_id": 1}' \
+      -X POST \
+      localhost:5555/posts
+
+# POST user 
+curl -X POST -H "Content-Type:application/json" -d '{"username": "user11", "first_name": "Joe", "last_name": "Smith", "password": "joesmith", "bio": "Test bio"}' localhost:5555/users
