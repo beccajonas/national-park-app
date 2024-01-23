@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Layout from "./components/Layout";
+import SearchParks from "./components/SearchParks"; // Corrected import path
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import About from "./pages/About";
+import ParkProfiles from "./pages/ParkProfiles";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,7 +39,11 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
-            {/* Additional routes can be added here */}
+            <Route path="/parks/:id" element={<ParkProfiles />} />{" "}
+            {/* Updated route to include park ID */}
+            <Route path="/search-parks" element={<SearchParks />} />{" "}
+            {/* Optional: Added route for SearchParks */}
+            {/* You can add more routes here as needed */}
           </Routes>
         </Layout>
       </div>
