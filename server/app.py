@@ -60,7 +60,7 @@ def login():
 # Logout
 @app.delete('/logout')
 def logout():
-    session.pop('user_id')
+    session.pop('user_id', None) 
     return { "message": "Logged out"}, 200
 
 @app.post('/upload')
@@ -179,5 +179,3 @@ def get_parks_by_id(id):
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
-
-
