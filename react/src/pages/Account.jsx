@@ -30,12 +30,6 @@ const Account = ({ isLoggedIn, handleLogin, handleLogout }) => {
         console.log("Response:", responseData);
         handleLogin(responseData);
         resetUserData();
-
-        if (isLoggingIn) {
-          console.log("Logged in");
-        } else {
-          console.log("Account created");
-        }
       } else {
         console.error("Error:", response.statusText);
       }

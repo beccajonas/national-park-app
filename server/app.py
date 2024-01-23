@@ -36,8 +36,8 @@ def index():
 # Check session
 @app.get('/check_session')
 def check_session():
-    user = db.session.get(User, session.get('user_id'))
-    print(f'check session {session.get("user_id")}')
+    user = db.session.get(User, session.get('id'))
+    print(f'check session: {user}')
     if user:
         return user.to_dict(rules=['-password']), 200
     else:
@@ -52,8 +52,8 @@ def login():
 
     if user and bcrypt.check_password_hash(user.password, data.get('password')):
         session["user_id"] = user.id
-        print("success")
-        return user.to_dict(), 200
+        print(f'success {user.to_dict()}')
+        return user.to_dict(rules=['-password']), 200
     else:
         return { "error": "Invalid username or password" }, 401
     

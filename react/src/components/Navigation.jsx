@@ -5,16 +5,9 @@ import { NavLink } from "react-router-dom";
 import SearchParks from "./SearchParks";
 
 const Navigation = ({ isLoggedIn, handleLogout }) => {
-  const handleSignOut = async () => {
-    try {
-      // logout user
-      await fetch("http://localhost:5555/logout", { method: "DELETE" });
-      console.log("Logged Out.");
-      handleLogout();
-    } catch (error) {
-      console.error("Logout Error:", error);
-    }
-  };
+  function handleSignOut() {
+    handleLogout();
+  }
 
   return (
     <nav>
