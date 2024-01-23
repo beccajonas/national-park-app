@@ -51,6 +51,12 @@ class User(db.Model, SerializerMixin):
                                 secondaryjoin = (follower_relationship.c.follower_id == id),
                                 )
 
+    @validates("password")
+    def validate_name(self, key, password):
+        if not password:
+            raise ValueError("Password cannot be none.")
+        return password
+
 class Post(db.Model, SerializerMixin):
     __tablename__ = 'post_table'
 
