@@ -1,4 +1,4 @@
-// Layout.jsx
+// Layout.jsx;
 
 import React from "react";
 

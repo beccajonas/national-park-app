@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-const Account = () => {
+const Account = ({ isLoggedIn, handleLogin, handleLogout }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [userData, setUserData] = useState({
     firstName: "",
@@ -11,8 +11,36 @@ const Account = () => {
     password: "",
   });
 
+  const resetUserData = () => {
+    setUserData({ firstName: "", lastName: "", username: "", password: "" });
+  };
+
+  const apiRequest = async (url, data) => {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Response:", responseData);
+        handleLogin(responseData);
+        resetUserData();
+      } else {
+        console.error("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const toggleLogin = () => {
     setIsLoggingIn(!isLoggingIn);
+    resetUserData();
   };
 
   const handleInputChange = (event) => {
@@ -22,133 +50,81 @@ const Account = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const apiUrl = isLoggingIn
+      ? "http://localhost:5555/login"
+      : "http://localhost:5555/users";
+    const requestData = isLoggingIn
+      ? { username: userData.username, password: userData.password }
+      : {
+          first_name: userData.firstName,
+          last_name: userData.lastName,
+          username: userData.username,
+          password: userData.password,
+        };
 
-    if (isLoggingIn) {
-      try {
-        const response = await fetch("http://localhost:5555/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: userData.username,
-            password: userData.password,
-          }),
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-          console.log("Logged in:", data);
-        } else {
-          console.error("Error logging in:", data);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    } else {
-      try {
-        const response = await fetch("http://localhost:5555/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            first_name: userData.firstName,
-            last_name: userData.lastName,
-            username: userData.username,
-            password: userData.password,
-          }),
-        });
-
-        if (
-          response.headers.get("content-length") === "0" ||
-          response.status === 204
-        ) {
-          console.log("Account created successfully");
-          return;
-        }
-
-        const data = await response.json();
-        if (response.ok) {
-          console.log("Account created:", data);
-        } else {
-          console.error("Error creating account:", data);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
+    await apiRequest(apiUrl, requestData);
   };
+
+  if (!isLoggedIn) {
+    return (
+      <div className="center-container">
+        <div className="account-container">
+          <h2>{isLoggingIn ? "Sign In" : "Sign Up"}</h2>
+          <form onSubmit={handleSubmit}>
+            {!isLoggingIn && (
+              <>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="input-field"
+                  name="firstName"
+                  value={userData.firstName}
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="input-field"
+                  name="lastName"
+                  value={userData.lastName}
+                  onChange={handleInputChange}
+                />
+              </>
+            )}
+            <input
+              type="text"
+              placeholder="Username"
+              className="input-field"
+              name="username"
+              value={userData.username}
+              onChange={handleInputChange}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="input-field"
+              name="password"
+              value={userData.password}
+              onChange={handleInputChange}
+            />
+            <button type="submit" className="action-button">
+              {isLoggingIn ? "Log In" : "Sign Up"}
+            </button>
+          </form>
+          <button onClick={toggleLogin} className="toggle-button">
+            {isLoggingIn
+              ? "Need to create an account?"
+              : "Already have an account?"}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="center-container">
       <div className="account-container">
-        <h2>{isLoggingIn ? "Sign In" : "Sign Up"}</h2>
-        <form onSubmit={handleSubmit}>
-          {isLoggingIn ? (
-            <>
-              <input
-                type="text"
-                placeholder="Username"
-                className="input-field"
-                name="username"
-                value={userData.username}
-                onChange={handleInputChange}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="input-field"
-                name="password"
-                value={userData.password}
-                onChange={handleInputChange}
-              />
-            </>
-          ) : (
-            <>
-              <input
-                type="text"
-                placeholder="First Name"
-                className="input-field"
-                name="firstName"
-                value={userData.firstName}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="input-field"
-                name="lastName"
-                value={userData.lastName}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Username"
-                className="input-field"
-                name="username"
-                value={userData.username}
-                onChange={handleInputChange}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="input-field"
-                name="password"
-                value={userData.password}
-                onChange={handleInputChange}
-              />
-            </>
-          )}
-          <button type="submit" className="action-button">
-            {isLoggingIn ? "Log In" : "Sign Up"}
-          </button>
-        </form>
-        <button onClick={toggleLogin} className="toggle-button">
-          {isLoggingIn
-            ? "Need to create an account?"
-            : "Already have an account?"}
-        </button>
+        <h2>Welcome to Park Lens!</h2>
       </div>
     </div>
   );
