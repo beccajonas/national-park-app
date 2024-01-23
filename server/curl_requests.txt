@@ -7,3 +7,9 @@ curl -H 'Content-Type: application/json' \
 
 # POST user 
 curl -X POST -H "Content-Type:application/json" -d '{"username": "user11", "first_name": "Joe", "last_name": "Smith", "password": "joesmith", "bio": "Test bio"}' localhost:5555/users
+
+# DELETE post
+curl -X DELETE localhost:5555/posts/1
+
+# DELETE comment_text
+curl -X DELETE localhost:5555/comments/1
