@@ -171,7 +171,17 @@ def post_comments():
 @app.get("/users")
 def get_users():
     users = User.query.all()
-    return [u.to_dict(rules=['-password', '-posts.comments', '-posts.description', '-posts.id', '-posts.name']) for u in users]
+    return [u.to_dict(rules=['-password', 
+        '-followers.bio',
+        '-followers.first_name',
+        '-followers.last_name',
+        '-followers.username',
+        '-posts.comments', 
+        '-posts.description', 
+        '-posts.id', 
+        '-posts.name', 
+        '-posts.park', 
+        '-posts.user_id']) for u in users]
 
 @app.get("/posts")
 def get_posts():
@@ -181,18 +191,28 @@ def get_posts():
 @app.get("/parks")
 def get_parks():
     parks = Park.query.all()
-    return [p.to_dict(rules=['-posts.comments']) for p in parks]
+    return [p.to_dict(rules=['-posts.comments', '-posts.user']) for p in parks]
 
 # Get by ID
 @app.get("/users/<int:id>")
 def get_users_by_id(id):
     user = db.session.get(User, id)
-    return user.to_dict(rules=['-password'])
+    return user.to_dict(rules=['-password',
+        '-followers.bio',
+        '-followers.first_name',
+        '-followers.last_name',
+        '-followers.username',
+        '-posts.park'])
 
 @app.get("/parks/<int:id>")
 def get_parks_by_id(id):
     park = db.session.get(Park, id)
-    return park.to_dict()
+    return park.to_dict(rules=['-posts.user', '-posts.comments'])
+
+@app.get("/posts/<int:id>")
+def get_posts_by_id(id):
+    post = db.session.get(Post, id)
+    return post.to_dict(rules=['-park', '-user'])
 
 # Patch requests
 @app.patch("/posts/<int:id>")
