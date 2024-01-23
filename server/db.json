@@ -400,7 +400,7 @@
       "likes": 120,
       "user_id": 10,
       "park_id": 1,
-      "photo_url": ""
+      "photo_url": "https://images.ctfassets.net/0wjmk6wgfops/6X7stlHaF9n3Nkfkzc99Tc/af09bb17eaf3425d737373b6f418bfbf/Delicate_Artch_resize_AdobeStock_333825728.jpeg?q=70"
     },
     {
       "id": 2,
@@ -408,7 +408,7 @@
       "likes": 85,
       "user_id": 7,
       "park_id": 2,
-      "photo_url": ""
+      "photo_url": "https://cdn.aarp.net/content/dam/aarp/travel/Domestic/2020/07/1140-badlands-sunset.jpg"
     },
     {
       "id": 3,
@@ -416,7 +416,7 @@
       "likes": 92,
       "user_id": 2,
       "park_id": 3,
-      "photo_url": ""
+      "photo_url": "https://www.nps.gov/bibe/planyourvisit/images/maverick-sign.jpg?maxwidth=1300&maxheight=1300&autorotate=false"
     },
     {
       "id": 4,
@@ -424,7 +424,7 @@
       "likes": 105,
       "user_id": 5,
       "park_id": 4,
-      "photo_url": ""
+      "photo_url": "https://www.aarp.org/content/dam/aarp/travel/national-parks/2022/12/1140-boca-chita-key-florida.jpg"
     },
     {
       "id": 5,
@@ -432,7 +432,7 @@
       "likes": 78,
       "user_id": 1,
       "park_id": 5,
-      "photo_url": ""
+      "photo_url": "https://national-park.com/wp-content/uploads/2016/04/Welcome-to-Black-Canyon-of-the-Gunnison-National-Park.jpg"
     },
     {
       "id": 6,
@@ -440,7 +440,7 @@
       "likes": 110,
       "user_id": 9,
       "park_id": 6,
-      "photo_url": ""
+      "photo_url": "https://i0.wp.com/americanfieldtrip.com/wp-content/uploads/2020/03/bryce-2020-8.jpg?fit=2160%2C2160&ssl=1"
     },
     {
       "id": 7,
@@ -448,7 +448,7 @@
       "likes": 95,
       "user_id": 4,
       "park_id": 7,
-      "photo_url": ""
+      "photo_url": "https://i.natgeofe.com/n/32723786-0d1a-4353-a451-a353509e4ee8/the-loop-green-river-canyonlands-national-park.jpg"
     },
     {
       "id": 8,
@@ -456,7 +456,7 @@
       "likes": 88,
       "user_id": 8,
       "park_id": 8,
-      "photo_url": ""
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Capitol_Reef_National_Park.jpg"
     },
     {
       "id": 9,
@@ -464,7 +464,7 @@
       "likes": 102,
       "user_id": 6,
       "park_id": 9,
-      "photo_url": ""
+      "photo_url": "https://www.tripsavvy.com/thmb/tFV9hOI6EDUa7kJ7tfRDh0m_ipk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/sword-of-damacles--carlsbad-caverns-520102518-234e21a285dd4bed9283d556dd454103.jpg"
     },
     {
       "id": 10,
@@ -472,7 +472,7 @@
       "likes": 115,
       "user_id": 3,
       "park_id": 10,
-      "photo_url": ""
+      "photo_url": "https://national-park.com/wp-content/uploads/2016/04/Welcome-to-Channel-Islands-National-Park.jpg"
     },
     {
       "id": 11,
@@ -480,7 +480,7 @@
       "likes": 93,
       "user_id": 2,
       "park_id": 11,
-      "photo_url": ""
+      "photo_url": "https://www.travelandleisure.com/thmb/DZM3slmMyWNM_cmYPy-wXJoloTo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-walkway-in-congaree-national-park-CONGAREENP0423-2bb61433f3fe41119b89498ddc2ff819.jpg"
     },
     {
       "id": 12,
@@ -488,7 +488,7 @@
       "likes": 98,
       "user_id": 7,
       "park_id": 12,
-      "photo_url": ""
+      "photo_url": "https://miro.medium.com/v2/resize:fit:960/1*rcVhsaujvHeiLkLWzcBkpQ.jpeg"
     },
     {
       "id": 13,
@@ -496,7 +496,7 @@
       "likes": 87,
       "user_id": 1,
       "park_id": 13,
-      "photo_url": ""
+      "photo_url": "https://npca.s3.amazonaws.com/images/8905/4b97fb81-6fa2-4f3e-9375-5cc2b6532fd9-banner.jpg?1445971120"
     },
     {
       "id": 14,
@@ -504,7 +504,7 @@
       "likes": 83,
       "user_id": 9,
       "park_id": 14,
-      "photo_url": ""
+      "photo_url": "https://npf-prod.imgix.net/uploads/death-valley-istock.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600"
     },
     {
       "id": 15,
@@ -512,7 +512,7 @@
       "likes": 122,
       "user_id": 4,
       "park_id": 15,
-      "photo_url": ""
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Every_Road-_Denali_%287945497984%29.jpg"
     },
     {
       "id": 16,
@@ -520,7 +520,7 @@
       "likes": 97,
       "user_id": 5,
       "park_id": 16,
-      "photo_url": ""
+      "photo_url": "https://www.drytortugas.com/wp-content/uploads/2020/02/dry-tortugas.jpg"
     },
     {
       "id": 17,
@@ -528,7 +528,7 @@
       "likes": 91,
       "user_id": 8,
       "park_id": 17,
-      "photo_url": ""
+      "photo_url": "https://www.southernliving.com/thmb/bu1B5-nm64z5WO2iz6mg6Y2GLCI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1216404158-ef6d83a2a48e4e4c8ffe4a3c836a155c.jpg"
     },
     {
       "id": 18,
@@ -536,7 +536,7 @@
       "likes": 105,
       "user_id": 6,
       "park_id": 18,
-      "photo_url": ""
+      "photo_url": "https://www.nps.gov/gaar/learn/historyculture/images/GAAR08-0111-2.jpg"
     },
     {
       "id": 19,
@@ -544,7 +544,7 @@
       "likes": 99,
       "user_id": 3,
       "park_id": 19,
-      "photo_url": ""
+      "photo_url": "https://i0.wp.com/www.mattandkaren.com/wp-content/uploads/2020/01/B37C5F11-1E6E-4587-BB1E-ECF981BD9986-1004x1024.jpg?resize=525%2C535&ssl=1"
     },
     {
       "id": 20,
@@ -552,7 +552,7 @@
       "likes": 114,
       "user_id": 2,
       "park_id": 20,
-      "photo_url": ""
+      "photo_url": "https://www.travelalaska.com/sites/default/files/2021-12/Destinations_ParksPublicLands_Glacier%20Bay%20National%20Park_Hero_%28ATIA%2C%20Mark%20Kelley%29_1.jpg"
     },
     {
       "id": 21,
@@ -560,7 +560,7 @@
       "likes": 118,
       "user_id": 7,
       "park_id": 21,
-      "photo_url": ""
+      "photo_url": "https://i.natgeofe.com/n/d12df135-5a89-4ba6-bf66-ee36c5f7fafe/01-glacier-national-park-montana_square.jpg"
     },
     {
       "id": 22,
@@ -568,7 +568,7 @@
       "likes": 123,
       "user_id": 1,
       "park_id": 22,
-      "photo_url": ""
+      "photo_url": "https://www.flagstaffarizona.org//imager/files_idss_com/C332/e862d64e-56a2-446f-8603-773576a2f7a9_77a996cadb6acd997fdd4924ba23cc85.jpg"
     },
     {
       "id": 23,
@@ -576,7 +576,7 @@
       "likes": 97,
       "user_id": 9,
       "park_id": 23,
-      "photo_url": ""
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Barns_grand_tetons.jpg"
     },
     {
       "id": 24,
@@ -584,7 +584,7 @@
       "likes": 101,
       "user_id": 4,
       "park_id": 24,
-      "photo_url": ""
+      "photo_url": "https://travelnevada.com/wp-content/uploads/2014/04/GBNP6_SM-opt.jpg"
     },
     {
       "id": 25,
@@ -592,7 +592,7 @@
       "likes": 110,
       "user_id": 8,
       "park_id": 25,
-      "photo_url": ""
+      "photo_url": "https://cdn.aarp.net/content/dam/aarp/travel/destinations/2022/10/1140-great-sand-dunes-park-colorado.jpg"
     },
     {
       "id": 26,
@@ -600,7 +600,7 @@
       "likes": 95,
       "user_id": 6,
       "park_id": 26,
-      "photo_url": ""
+      "photo_url": "https://paddywax.com/cdn/shop/files/Great_Smoky_Mountains_Image.jpg?v=1660150373&width=1500"
     },
     {
       "id": 27,
@@ -608,7 +608,7 @@
       "likes": 96,
       "user_id": 3,
       "park_id": 27,
-      "photo_url": ""
+      "photo_url": "https://www.worldtribune.org/wp-content/uploads/sites/2/2021/11/Guadalupe-Mountains-National-Park_GettyImages-1194194941-scaled.jpg"
     },
     {
       "id": 28,
@@ -616,7 +616,7 @@
       "likes": 92,
       "user_id": 2,
       "park_id": 28,
-      "photo_url": ""
+      "photo_url": "https://www.drivethenation.com/wp-content/uploads/2015/06/Haleakala-Sunrise.jpg"
     },
     {
       "id": 29,
@@ -624,7 +624,7 @@
       "likes": 116,
       "user_id": 7,
       "park_id": 29,
-      "photo_url": ""
+      "photo_url": "https://national-park.com/wp-content/uploads/2016/04/Welcome-to-Hawaii-Volcanoes-National-Park.jpg"
     },
     {
       "id": 30,
@@ -632,7 +632,7 @@
       "likes": 89,
       "user_id": 1,
       "park_id": 30,
-      "photo_url": ""
+      "photo_url": "https://i.natgeofe.com/k/32e57b52-5a7d-4d9b-944f-b76a6e8af180/Hot-Springs-springs1_16x9.jpg?w=1200"
     },
     {
       "id": 31,
@@ -640,7 +640,7 @@
       "likes": 94,
       "user_id": 5,
       "park_id": 31,
-      "photo_url": ""
+      "photo_url": "https://www.columbusmonthly.com/gcdn/presto/2023/02/17/NCOM/db5ec20a-3e04-4b8c-81f7-805fa31f4b62-cm_0223_bdv_04.jpg?width=660&height=441&fit=crop&format=pjpg&auto=webp"
     },
     {
       "id": 32,
@@ -648,7 +648,7 @@
       "likes": 103,
       "user_id": 9,
       "park_id": 32,
-      "photo_url": ""
+      "photo_url": "https://www.treehugger.com/thmb/JkylrUJ7fyp1stIIb3lmsKXKQe4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/sunrise-at-rock-harbor-534063053-25adc0013bb44667891a015cc4ae4890.jpg"
     },
     {
       "id": 33,
@@ -656,7 +656,7 @@
       "likes": 108,
       "user_id": 4,
       "park_id": 33,
-      "photo_url": ""
+      "photo_url": "https://drupal8-prod.visitcalifornia.com/sites/drupal8-prod.visitcalifornia.com/files/2020-07/D_JoshuaTreeNationalPark.jpeg"
     },
     {
       "id": 34,
@@ -664,7 +664,7 @@
       "likes": 107,
       "user_id": 8,
       "park_id": 34,
-      "photo_url": ""
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Katmai_Crater_1980.jpg/1200px-Katmai_Crater_1980.jpg"
     },
     {
       "id": 35,
@@ -672,7 +672,7 @@
       "likes": 112,
       "user_id": 6,
       "park_id": 35,
-      "photo_url": ""
+      "photo_url": "https://cdn.britannica.com/98/127698-050-5CDF8ECF/Kenai-Fjords-National-Park-Seward-Alaska.jpg"
     },
     {
       "id": 36,
@@ -680,7 +680,7 @@
       "likes": 99,
       "user_id": 3,
       "park_id": 36,
-      "photo_url": ""
+      "photo_url": "https://res.cloudinary.com/simpleview/image/upload/v1654809567/clients/fresnoca/Kings_Canyon_Rae_Lakes_AlexanderHadik_e9156d63-72a0-4168-a798-71a0f5051595.jpg"
     },
     {
       "id": 37,
@@ -688,7 +688,7 @@
       "likes": 98,
       "user_id": 2,
       "park_id": 37,
-      "photo_url": ""
+      "photo_url": "https://i.natgeofe.com/n/2d39e2d5-5b57-485e-996f-ba8749acbf1c/93191_16x9.jpg?w=1200"
     },
     {
       "id": 38,
@@ -696,7 +696,7 @@
       "likes": 104,
       "user_id": 7,
       "park_id": 38,
-      "photo_url": ""
+      "photo_url": "https://www.nps.gov/lacl/images/LACL_2018_LakeClark_TiaVaughn.jpg"
     },
     {
       "id": 39,
@@ -704,7 +704,7 @@
       "likes": 114,
       "user_id": 1,
       "park_id": 39,
-      "photo_url": ""
+      "photo_url": "https://www.worldtribune.org/wp-content/uploads/sites/2/2022/12/Lassen_Volcanic_NP_GettyImages-146920727.jpg"
     },
     {
       "id": 40,
@@ -712,7 +712,7 @@
       "likes": 88,
       "user_id": 9,
       "park_id": 40,
-      "photo_url": ""
+      "photo_url": "https://assets.simpleviewinc.com/simpleview/image/upload/c_fit,w_800,h_600/crm/kentucky/84ff2c9e9b461425491115ec7dc72063_RiverStyxSpringMCNP_117521e1-f80d-f9b2-b0324fdda134a32b.jpg"
     },
     {
       "id": 41,
@@ -720,7 +720,7 @@
       "likes": 91,
       "user_id": 4,
       "park_id": 41,
-      "photo_url": ""
+      "photo_url": "https://www.usatoday.com/gcdn/-mm-/3c4306e97bc382706b2675c9befecdff7ca74b29/c=0-237-2098-1422/local/-/media/2016/05/27/USATODAY/USATODAY/635999554504046520-View-of-Cliff-Palace-from-above-credit-NPS-Photo.jpg"
     },
     {
       "id": 42,
@@ -728,7 +728,7 @@
       "likes": 102,
       "user_id": 8,
       "park_id": 42,
-      "photo_url": ""
+      "photo_url": "https://150238017.v2.pressablecdn.com/wp-content/uploads/2014/07/RAI2113HRAINIER_2.jpg"
     },
     {
       "id": 43,
@@ -736,7 +736,7 @@
       "likes": 97,
       "user_id": 6,
       "park_id": 43,
-      "photo_url": ""
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Pola_Islands_Tutuila_NPS.jpg"
     },
     {
       "id": 44,
@@ -744,7 +744,7 @@
       "likes": 100,
       "user_id": 3,
       "park_id": 44,
-      "photo_url": ""
+      "photo_url": "https://media.cntraveler.com/photos/5ff60aac8c1276088c4c888b/16:9/w_3984,h_2241,c_limit/NewRiverGorge-NationalPark-2020-M0P9HY-2.jpg"
     },
     {
       "id": 45,
@@ -752,7 +752,7 @@
       "likes": 109,
       "user_id": 2,
       "park_id": 45,
-      "photo_url": ""
+      "photo_url": "https://miro.medium.com/v2/resize:fit:1358/0*SIYw1nU-ayDVCWBY"
     },
     {
       "id": 46,
@@ -760,7 +760,7 @@
       "likes": 119,
       "user_id": 7,
       "park_id": 46,
-      "photo_url": ""
+      "photo_url": "https://wildlandtrekking.com/content/uploads/2023/03/Oylmpic-Coast-2-1200x901.jpg"
     },
     {
       "id": 47,
@@ -768,7 +768,7 @@
       "likes": 103,
       "user_id": 1,
       "park_id": 47,
-      "photo_url": ""
+      "photo_url": "https://i.natgeofe.com/k/f7d5d21f-93d8-4642-b46b-5337f7b0d0e3/petrified-forest-hills_16x9.jpg?w=1200"
     },
     {
       "id": 48,
@@ -776,7 +776,7 @@
       "likes": 95,
       "user_id": 9,
       "park_id": 48,
-      "photo_url": ""
+      "photo_url": "https://cdn.aarp.net/content/dam/aarp/home-and-family/family-and-friends/2023/06/1140-sunrise-pinnacles-national-park-california.jpg"
     },
     {
       "id": 49,
@@ -784,7 +784,7 @@
       "likes": 106,
       "user_id": 4,
       "park_id": 49,
-      "photo_url": ""
+      "photo_url": "https://embracesomeplace.com/wp-content/uploads/2019/02/DSC00651.jpg"
     },
     {
       "id": 50,
@@ -792,7 +792,7 @@
       "likes": 117,
       "user_id": 8,
       "park_id": 50,
-      "photo_url": ""
+      "photo_url": "https://nucamprv.com/app/uploads/2023/06/Rocky-Mountain-NPS-scaled.jpg"
     },
     {
       "id": 51,
@@ -800,7 +800,7 @@
       "likes": 101,
       "user_id": 6,
       "park_id": 51,
-      "photo_url": ""
+      "photo_url": "https://www.tpl.org/wp-content/uploads/2020/06/az_Saguaro_NP_iStock_001.jpg"
     },
     {
       "id": 52,
@@ -808,7 +808,7 @@
       "likes": 110,
       "user_id": 3,
       "park_id": 52,
-      "photo_url": ""
+      "photo_url": "https://explorewithalec.com/wp-content/uploads/2021/08/sequioa--scaled.jpg"
     },
     {
       "id": 53,
@@ -816,7 +816,7 @@
       "likes": 93,
       "user_id": 2,
       "park_id": 53,
-      "photo_url": ""
+      "photo_url": "https://orchardinn.com/wp-content/uploads/2016/10/blue-ridge-pkwy-e1524244676313.jpg"
     },
     {
       "id": 54,
@@ -824,7 +824,7 @@
       "likes": 96,
       "user_id": 7,
       "park_id": 54,
-      "photo_url": ""
+      "photo_url": "https://cdn.britannica.com/85/115485-050-91FE0364/Little-Missouri-River-Theodore-Roosevelt-National-Park.jpg"
     },
     {
       "id": 55,
@@ -832,7 +832,7 @@
       "likes": 108,
       "user_id": 1,
       "park_id": 55,
-      "photo_url": ""
+      "photo_url": "https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2803,w_4200,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1200/Virgin_Islands_National_Park_tjblao.jpg"
     },
     {
       "id": 56,
@@ -840,7 +840,7 @@
       "likes": 112,
       "user_id": 9,
       "park_id": 56,
-      "photo_url": ""
+      "photo_url": "https://www.cruiseamerica.com/getattachment/4ae9792a-a865-45ad-831f-6bc500dff796/attachment.aspx"
     },
     {
       "id": 57,
@@ -848,7 +848,7 @@
       "likes": 94,
       "user_id": 4,
       "park_id": 57,
-      "photo_url": ""
+      "photo_url": "https://www.worldtribune.org/wp-content/uploads/sites/2/2022/04/WhiteSands_GettyImages-520467294.jpg"
     },
     {
       "id": 58,
@@ -856,7 +856,7 @@
       "likes": 99,
       "user_id": 8,
       "park_id": 58,
-      "photo_url": ""
+      "photo_url": "https://www.nps.gov/wica/learn/news/images/Caver-by-Lake-in-Wind-Cave-low-res.jpg"
     },
     {
       "id": 59,
@@ -864,7 +864,7 @@
       "likes": 105,
       "user_id": 6,
       "park_id": 59,
-      "photo_url": ""
+      "photo_url": "https://www.rei.com/assets/adventures/images/trip/core/northamerica/awe_hero/live.jpg"
     },
     {
       "id": 60,
@@ -872,7 +872,7 @@
       "likes": 120,
       "user_id": 3,
       "park_id": 60,
-      "photo_url": ""
+      "photo_url": "https://media.cntraveler.com/photos/6185465b62de01ff927a2456/16:9/w_2560%2Cc_limit/Yellowstone_Grand%2520Prismatic%2520Spring_GettyImages-667781269.jpg"
     },
     {
       "id": 61,
@@ -880,7 +880,7 @@
       "likes": 115,
       "user_id": 2,
       "park_id": 61,
-      "photo_url": ""
+      "photo_url": "https://www.travelandleisure.com/thmb/4gCV8cgTfnsnOQ2n3adR9dSaOI8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/yosemite-national-park-landscape-lead-WINTERYOSEMITE0322-513572cd8d8d429d82ffbfc996c77c84.jpg"
     },
     {
       "id": 62,
@@ -888,7 +888,7 @@
       "likes": 150,
       "user_id": 8,
       "park_id": 62,
-      "photo_url": ""
+      "photo_url": "https://a.cdn-hotels.com/gdcs/production21/d594/67824cc8-c13c-4cfa-b687-4f948864e4c9.jpg?impolicy=fcrop&w=800&h=533&q=medium"
     }
   ],
   "comment_table": [

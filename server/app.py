@@ -1,4 +1,4 @@
-from flask import Flask, make_response, jsonify, request, session, render_template
+from flask import Flask, make_response, jsonify, request, session, render_template, json
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import datetime
@@ -8,7 +8,7 @@ from dotenv import dotenv_values
 from flask_bcrypt import Bcrypt
 import boto3
 from botocore.exceptions import NoCredentialsError
-from werkzeug.utils import secure_filename
+
 
 config = dotenv_values(".env")
 
@@ -27,7 +27,7 @@ db.init_app(app)
 AWS_ACCESS_KEY = config['AWS_ACCESS_KEY_ID']
 AWS_REGION = config['AWS_REGION']
 AWS_SECRET_KEY = config['AWS_SECRET_KEY']
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
 
 @app.get("/")
 def index():
@@ -63,41 +63,44 @@ def logout():
     session.pop('user_id', None) 
     return { "message": "Logged out"}, 200
 
+# Post photo + post
 @app.post('/upload')
 def upload_photo():
     if 'file' not in request.files:
         return "No file"
     
     file = request.files['file']
-    data = request.json
+    json_data = request.form.get('json_data')
+    print(json_data)
 
-    if file.filename == '':
-        return "No selected file"
+    if file.filename == '' or not json_data:
+        return "Missing file or JSON data"
     
     try:
+        data = json.loads(json_data)
+        print(data)
         # Upload file to S3
         s3 = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, region_name=AWS_REGION)
         bucket = s3.Bucket(app.config['FLASKS3_BUCKET_NAME'])
         bucket.upload_fileobj(file, file.filename)
 
         new_post = Post(
-            caption=data.get['caption'],
+            caption=data.get('caption'),
             likes=0,
             photo_url=f"https://{app.config['FLASKS3_BUCKET_NAME']}.s3.{AWS_REGION}.amazonaws.com/{file.filename}",
-            user_id=data.get['user_id'],
-            park_id=data.get['park_id']  
+            user_id=data.get('user_id'),
+            park_id=data.get('park_id' )
         )
 
         db.session.add(new_post)
         db.session.commit()
 
-        return new_post.to_dict(rules=['-user'])
+        return new_post.to_dict(rules=['-user', '-park' ])
     
     except NoCredentialsError:
         return "Credentials not available"
 
     
-
 # Post user
 @app.post('/users')
 def post_new_user():
@@ -123,59 +126,110 @@ def post_new_user():
     except Exception as e:
         return {"Error": str(e)}, 400
 
-# Post posts
-@app.post('/posts')
-def post_photo():
-
+# Post comments
+@app.post('/comments')
+def post_comments():
     try:
         data = request.json
 
-        new_post = Post(
-            caption=data.get("caption"),
+        new_comment = Comment(
+            comment_text=data.get("comment_text"),
             user_id=data.get("user_id"),
-            park_id=data.get("park_id")
+            post_id=data.get("post_id")
         )
 
-        db.session.add(new_post)
+        db.session.add(new_comment)
         db.session.commit()
         
-        return new_post.to_dict(), 201
-
+        return new_comment.to_dict(rules=['-post', '-user']), 201
+    
     except Exception as e:
-        return jsonify({"Error": str(e)}), 400 
+        return {"Error": str(e)}, 400 
 
-# Get requests
+# Get users
 @app.get("/users")
 def get_users():
     users = User.query.all()
-    return [u.to_dict(rules=['-password', '-posts.comments', '-posts.description', '-posts.id', '-posts.name']) for u in users]
+    return [u.to_dict(rules=['-password', 
+        '-followers.bio',
+        '-followers.first_name',
+        '-followers.last_name',
+        '-followers.username',
+        '-posts.comments', 
+        '-posts.description', 
+        '-posts.id', 
+        '-posts.name', 
+        '-posts.park', 
+        '-posts.user_id']) for u in users]
 
-@app.get("/comments")
-def get_comments():
-    comments = Comment.query.all()
-    return [c.to_dict() for c in comments]
-
+# Get posts
 @app.get("/posts")
 def get_posts():
     posts = Post.query.all()
     return [p.to_dict(rules=['-park', '-user']) for p in posts]
 
+# Get parks
 @app.get("/parks")
 def get_parks():
     parks = Park.query.all()
-    return [p.to_dict(rules=['-posts.comments']) for p in parks]
+    return [p.to_dict(rules=['-posts.comments', '-posts.user']) for p in parks]
 
-# Get by ID
+# Get user by ID
 @app.get("/users/<int:id>")
 def get_users_by_id(id):
     user = db.session.get(User, id)
-    return user.to_dict(rules=['-password'])
+    return user.to_dict(rules=['-password',
+        '-followers.bio',
+        '-followers.first_name',
+        '-followers.last_name',
+        '-followers.username',
+        '-posts.park'])
 
+# Get park by ID
 @app.get("/parks/<int:id>")
 def get_parks_by_id(id):
     park = db.session.get(Park, id)
-    return park.to_dict()
+    return park.to_dict(rules=['-posts.user', '-posts.comments'])
 
+# Get posts by ID
+@app.get("/posts/<int:id>")
+def get_posts_by_id(id):
+    post = db.session.get(Post, id)
+    return post.to_dict(rules=['-park', '-user'])
+
+# Patch a post
+@app.patch("/posts/<int:id>")
+def patch_post_likes(id):
+    data = request.json
+    post = db.session.get(Post, id)
+
+    for key in data:
+        setattr(post, key, data[key])
+    
+    db.session.add(post)
+    db.session.commit()
+
+    return post.to_dict(rules=['-user']), 201 
+
+# Delete post
+@app.delete("/posts/<int:id>")
+def delete_post_by_id(id):
+    post = db.session.get(Post, id)
+    if not post:
+        return {"error": "post not found"}, 404
+    db.session.delete(post)
+    db.session.commit()
+    return {}
+
+# Delete comment
+@app.delete("/comments/<int:id>")
+def delete_comment_by_id(id):
+    comment = db.session.get(Comment, id)
+    if not comment:
+        {"error": "comment not found"}, 404
+    db.session.delete(comment)
+    db.session.commit()
+    return {}
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

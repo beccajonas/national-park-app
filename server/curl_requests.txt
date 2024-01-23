@@ -1,0 +1,17 @@
+# POST post
+POST -H "Content-Type: multipart/form-data" \                                     
+  -F "file=@/users/rebeccajonas/desktop/arches_np_test_2.jpg" \
+  -F "json_data={\"caption\": \"Your caption here\", \"user_id\": 1, \"park_id\": 2}" \
+  http://localhost:5555/upload
+
+# POST user 
+curl -X POST -H "Content-Type:application/json" -d '{"username": "user11", "first_name": "Joe", "last_name": "Smith", "password": "joesmith", "bio": "Test bio"}' localhost:5555/users
+
+# POST comment
+curl -X POST -H "Content-Type:application/json" -d '{"comment_text": "test!", "user_id": 1, "post_id": "1"}' localhost:5555/comments
+# DELETE post
+
+curl -X DELETE localhost:5555/posts/1
+
+# DELETE comment_text
+curl -X DELETE localhost:5555/comments/1
