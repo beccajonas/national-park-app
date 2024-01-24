@@ -174,6 +174,14 @@ def get_parks():
     parks = Park.query.all()
     return [p.to_dict(rules=['-posts.comments', '-posts.user']) for p in parks]
 
+# Get parks posts by ID
+@app.get("/posts/park/<int:park_id>")
+def get_posts_by_park_id(park_id):
+    posts = Post.query.filter_by(park_id=park_id).all()
+    if not posts:
+        return jsonify({"message": "No posts found for this park"}), 404
+    return jsonify([post.to_dict() for post in posts]), 200
+
 # Get user by ID
 @app.get("/users/<int:id>")
 def get_users_by_id(id):

@@ -4,10 +4,11 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from "react-router-dom";
 import Header from "./components/Header";
 import Layout from "./components/Layout";
-import SearchParks from "./components/SearchParks"; // Corrected import path
+import SearchParks from "./components/SearchParks";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ParkProfiles from "./pages/ParkProfiles";
+import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
