@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
+import * as yup from 'yup' 
 
 function Home({user, handleLogin, isLoggedin}) {
   const [username, setUsername] = useState("")
@@ -9,6 +10,18 @@ function Home({user, handleLogin, isLoggedin}) {
   const [signupUsername, setSignupUsername] = useState("")
   const [signupPassword, setsignupPassword] = useState("")
   const [isReturningUser, setIsReturningUser] = useState(true)
+
+  const loginSchema = yup.object().shape({
+    username: yup.string().required('Username is required'),
+    password: yup.string().required('Password is required'),
+  });
+
+  const signupSchema = yup.object().shape({
+    firstName: yup.string().required('First Name is required'),
+    lastName: yup.string().required('Last Name is required'),
+    signupUsername: yup.string().required('Username is required'),
+    signupPassword: yup.string().required('Password is required'),
+  });
 
 
   function handleSubmit(e) {
