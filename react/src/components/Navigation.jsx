@@ -39,7 +39,7 @@ const Navigation = ({ isLoggedIn, handleLogout }) => {
             </button>
           ) : (
             <NavLink
-              to="/account"
+              to="/"
               className={({ isActive }) =>
                 isActive ? "nav-button active" : "nav-button"
               }
