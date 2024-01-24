@@ -18,8 +18,7 @@ import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
-  const [loginFailed, setLoginFailed] = useState(false);
+  const [user, setUser] = useState(null)
 
   /**********************
 Initial Fetches
@@ -38,32 +37,32 @@ Initial Fetches
 Authentication
 ************************/
 
-  async function handleLogin(userInfo) {
-    try {
-      const res = await fetch(`http://localhost:5555/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-      });
+async function handleLogin(userInfo) {
+  try {
+    const res = await fetch(`http://localhost:5555/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
 
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data);
-        setIsLoggedIn(true);
-        setLoginFailed(false);
-        console.log("set login to true");
-        return true; // successful login
-      } else {
-        throw res;
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      setLoginFailed(true);
-      return false; // failed login
+    if (res.ok) {
+      const data = await res.json();
+      setUser(data);
+      setIsLoggedIn(true);
+      setLoginFailed(false); 
+      console.log('set login to true');
+      return true; // successful login
+    } else {
+      throw res;
     }
+  } catch (error) {
+    console.error("Error logging in:", error);
+    setLoginFailed(true); 
+    return false; // failed login
   }
+}
 
   function handleLogout() {
     fetch(`http://localhost:5555/logout`, { method: "DELETE" }).then((res) => {
@@ -81,6 +80,15 @@ Authentication
         <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
         <Layout>
           <Routes>
+            <Route path="/" 
+            element={<Home isLoggedIn={isLoggedIn} 
+                          handleLogin={handleLogin}
+                          handleLogout={handleLogout}
+                          user={user}
+                          setUser={setUser} 
+                          setLoginFailed={setLoginFailed}
+                          loginFailed={loginFailed}
+                          />} 
             <Route
               path="/"
               element={
