@@ -1,8 +1,7 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
-import * as yup from 'yup' 
 
-function Home({user, handleLogin, isLoggedin}) {
+function Home({user, handleLogin, isLoggedin, showLoginFailedPopup, setShowLoginFailedPopup}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
@@ -11,25 +10,19 @@ function Home({user, handleLogin, isLoggedin}) {
   const [signupPassword, setsignupPassword] = useState("")
   const [isReturningUser, setIsReturningUser] = useState(true)
 
-  const loginSchema = yup.object().shape({
-    username: yup.string().required('Username is required'),
-    password: yup.string().required('Password is required'),
-  });
-
-  const signupSchema = yup.object().shape({
-    firstName: yup.string().required('First Name is required'),
-    lastName: yup.string().required('Last Name is required'),
-    signupUsername: yup.string().required('Username is required'),
-    signupPassword: yup.string().required('Password is required'),
-  });
-
 
   function handleSubmit(e) {
-    e.preventDefault()
-    handleLogin({username, password})
-    setUsername("")
-    setPassword("")
+    e.preventDefault();
+    handleLogin({ username, password })
+      .then(() => {
+        setUsername("");
+        setPassword("");
+      })
+      .catch(() => {
+        setShowLoginFailedPopup(true);
+      });
   }
+  
 
   function handleReturningUser(e) {
     e.preventDefault()
@@ -67,7 +60,7 @@ function Home({user, handleLogin, isLoggedin}) {
   return (
     user ?  (
       <div>
-        <h1>Welcome to Park Lens!</h1>
+        <h1>Welcome to Park Lens, {user.username}!</h1>
       </div>)
       :
       isReturningUser ?  (
@@ -93,6 +86,11 @@ function Home({user, handleLogin, isLoggedin}) {
                 <button type="submit" className="action-button">Login</button>
                 <button onClick={handleReturningUser} className="action-button">Create account</button>
       </form>
+      {showLoginFailedPopup && (
+            <div className="login-failed-popup">
+              <p>Login failed, please try again.</p>
+            </div>
+          )}
     </div>) :
     <div>
       <h1>Welcome to Park Lens!</h1>
