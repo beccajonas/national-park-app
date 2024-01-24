@@ -13,7 +13,7 @@ import "./App.css";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null)
-  const [showLoginFailedPopup, setShowLoginFailedPopup] = useState(false);
+  const [loginFailed, setLoginFailed] = useState(false);
 
 /**********************
 Initial Fetches
@@ -31,28 +31,6 @@ Initial Fetches
 /**********************
 Authentication
 ************************/
-// function handleLogin(userInfo) {
-//   fetch(`http://localhost:5555/login`, {
-//       method: "POST",
-//       headers: {
-//           "Content-Type": "application/json",
-//           Accepts: "application/json",
-//       },
-//       body: JSON.stringify(userInfo),
-//   })
-//       .then((res) => {
-//           if (res.ok) {
-//               return res.json();
-//           }
-//           throw res;
-//       })
-//       .then((data) => {
-//         setUser(data);
-//         setIsLoggedIn(true);
-//         console.log('set login to true'); 
-//       })
-//       .catch((error) => console.error("Error logging in:", error));
-// }
 
 async function handleLogin(userInfo) {
   try {
@@ -68,7 +46,7 @@ async function handleLogin(userInfo) {
       const data = await res.json();
       setUser(data);
       setIsLoggedIn(true);
-      setShowLoginFailedPopup(false); 
+      setLoginFailed(false); 
       console.log('set login to true');
       return true; // successful login
     } else {
@@ -76,7 +54,7 @@ async function handleLogin(userInfo) {
     }
   } catch (error) {
     console.error("Error logging in:", error);
-    setShowLoginFailedPopup(true); 
+    setLoginFailed(true); 
     return false; // failed login
   }
 }
@@ -103,8 +81,8 @@ async function handleLogin(userInfo) {
                           handleLogout={handleLogout}
                           user={user}
                           setUser={setUser} 
-                          setShowLoginFailedPopup={setShowLoginFailedPopup}
-                          showLoginFailedPopup={showLoginFailedPopup}
+                          setLoginFailed={setLoginFailed}
+                          loginFailed={loginFailed}
                           />} 
             />
             <Route path="/about" element={<About />} />

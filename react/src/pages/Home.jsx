@@ -1,15 +1,16 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
 
-function Home({user, handleLogin, isLoggedin, showLoginFailedPopup, setShowLoginFailedPopup}) {
+
+function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [signupUsername, setSignupUsername] = useState("")
-  const [signupPassword, setsignupPassword] = useState("")
+  const [signupPassword, setSignupPassword] = useState("")
   const [isReturningUser, setIsReturningUser] = useState(true)
-
+  const [signupFail, setSignupFail] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,43 +20,54 @@ function Home({user, handleLogin, isLoggedin, showLoginFailedPopup, setShowLogin
         setPassword("");
       })
       .catch(() => {
-        setShowLoginFailedPopup(true);
+        setLoginFailed(true);
       });
   }
   
-
   function handleReturningUser(e) {
     e.preventDefault()
     setIsReturningUser(!isReturningUser)
   }
 
   function handleSignUp(e) {
-    e.preventDefault()
+    e.preventDefault();
+  
     const newUser = {
       'first_name': firstName,
       'last_name': lastName,
-      'username' : signupUsername,
-      'password' : signupPassword
-    }
+      'username': signupUsername,
+      'password': signupPassword
+    };
+  
     fetch('http://localhost:5555/users', {
       method: 'POST',
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newUser),
     })
-      .then((res) => res.json()) 
-      .then(setIsReturningUser(!isReturningUser))
-      .then(
-        setFirstName(""),
-        setLastName(""),
-        setSignupUsername(""),
-        setsignupPassword("")
-      )
+      .then((response) => {
+        if (response.ok) {
+          setIsReturningUser(!isReturningUser);
+          setFirstName('');
+          setLastName('');
+          setSignupUsername('');
+          setSignupPassword('');
+          return response.json();
+        } else {
+          return response.json().then((error) => {
+            console.log(error);
+            setSignupFail(true)
+            setIsReturningUser(isReturningUser)
+          });
+        }
+      })
       .catch((error) => {
-        console.error('Error submitting logging in:', error);
+        console.error(error.message);
+        alert(error.message);
       });
   }
+  
 
   return (
     user ?  (
@@ -76,8 +88,8 @@ function Home({user, handleLogin, isLoggedin, showLoginFailedPopup, setShowLogin
                   onChange={(e) => setUsername(e.target.value) }
                 />
                 <input
-                  type="text"
-                  placeholder="password"
+                  type="password"
+                  placeholder="Password"
                   className="input-field"
                   name="password"
                   value={password}
@@ -86,9 +98,9 @@ function Home({user, handleLogin, isLoggedin, showLoginFailedPopup, setShowLogin
                 <button type="submit" className="action-button">Login</button>
                 <button onClick={handleReturningUser} className="action-button">Create account</button>
       </form>
-      {showLoginFailedPopup && (
+      {loginFailed && (
             <div className="login-failed-popup">
-              <p>Login failed, please try again.</p>
+              <p>Login failed. Please try again.</p>
             </div>
           )}
     </div>) :
@@ -125,11 +137,16 @@ function Home({user, handleLogin, isLoggedin, showLoginFailedPopup, setShowLogin
         className="input-field"
         name="password"
         value={signupPassword}
-        onChange={(e) => setsignupPassword(e.target.value)}
+        onChange={(e) => setSignupPassword(e.target.value)}
       />
       </form>
       <button onClick={handleSignUp} type="submit" className="action-button">Signup</button>
       <button onClick={handleReturningUser} className="action-button">Signin</button>
+      {signupFail && (
+            <div className="login-failed-popup">
+              <p>Username must be unique and password cannot be empty. Please try again.</p>
+            </div>
+          )}
     </div> 
   )
 }
