@@ -1,7 +1,13 @@
 // App.jsx
 
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  Link,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Layout from "./components/Layout";
 import SearchParks from "./components/SearchParks";
@@ -13,22 +19,21 @@ import "./App.css";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null)
-  const [loginFailed, setLoginFailed] = useState(false);
 
-/**********************
+  /**********************
 Initial Fetches
 ************************/
   useEffect(() => {
     fetch(`http://localhost:5555/check_session`)
-    .then((res) => {
+      .then((res) => {
         if (res.ok) {
-            res.json().then((data) => setUser(data));
+          res.json().then((data) => setUser(data));
         }
-    })
-    .then(console.log(user))
-}, [setUser]);
+      })
+      .then(console.log(user));
+  }, [setUser]);
 
-/**********************
+  /**********************
 Authentication
 ************************/
 
@@ -61,12 +66,12 @@ async function handleLogin(userInfo) {
 
   function handleLogout() {
     fetch(`http://localhost:5555/logout`, { method: "DELETE" }).then((res) => {
-        if (res.ok) {
-            setUser(null)
-            console.log('set login to false');
-            setIsLoggedIn(false)
-        }
-    })
+      if (res.ok) {
+        setUser(null);
+        console.log("set login to false");
+        setIsLoggedIn(false);
+      }
+    });
   }
 
   return (
@@ -84,6 +89,19 @@ async function handleLogin(userInfo) {
                           setLoginFailed={setLoginFailed}
                           loginFailed={loginFailed}
                           />} 
+            <Route
+              path="/"
+              element={
+                <Home
+                  isLoggedIn={isLoggedIn}
+                  handleLogin={handleLogin}
+                  handleLogout={handleLogout}
+                  user={user}
+                  setUser={setUser}
+                  setLoginFailed={setLoginFailed}
+                  loginFailed={loginFailed}
+                />
+              }
             />
             <Route path="/about" element={<About />} />
             <Route path="/parks/:id" element={<ParkProfiles />} />{" "}

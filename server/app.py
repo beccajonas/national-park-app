@@ -239,5 +239,6 @@ def delete_comment_by_id(id):
     db.session.commit()
     return {}
 
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
