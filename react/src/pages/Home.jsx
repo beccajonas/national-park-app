@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import UserProfile from "./UserProfile";
 
 function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
@@ -24,8 +23,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
       });
   }
 
-  function handleReturningUser(e) {
-    e.preventDefault();
+  function handleReturningUser() {
     setIsReturningUser(!isReturningUser);
   }
 
@@ -48,23 +46,31 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
     })
       .then((response) => {
         if (response.ok) {
-          setIsReturningUser(!isReturningUser);
-          setFirstName("");
-          setLastName("");
-          setSignupUsername("");
-          setSignupPassword("");
           return response.json();
         } else {
           return response.json().then((error) => {
-            console.log(error);
-            setSignupFail(true);
-            setIsReturningUser(isReturningUser);
+            throw new Error(error.message);
           });
         }
       })
+      .then(() => {
+        // Automatically log the user in after successful signup
+        return handleLogin({
+          username: signupUsername,
+          password: signupPassword,
+        });
+      })
+      .then(() => {
+        // Reset form fields and update states if necessary
+        setFirstName("");
+        setLastName("");
+        setSignupUsername("");
+        setSignupPassword("");
+        // Assuming handleLogin updates user state, no need to change isReturningUser here
+      })
       .catch((error) => {
         console.error(error.message);
-        alert(error.message);
+        setSignupFail(true);
       });
   }
 
@@ -142,13 +148,13 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
           value={signupPassword}
           onChange={(e) => setSignupPassword(e.target.value)}
         />
+        <button type="submit" className="action-button">
+          Signup
+        </button>
+        <button onClick={handleReturningUser} className="action-button">
+          Signin
+        </button>
       </form>
-      <button onClick={handleSignUp} type="submit" className="action-button">
-        Signup
-      </button>
-      <button onClick={handleReturningUser} className="action-button">
-        Signin
-      </button>
       {signupFail && (
         <div className="login-failed-popup">
           <p>
