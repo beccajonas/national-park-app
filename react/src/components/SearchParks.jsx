@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const SearchParks = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,12 +15,13 @@ const SearchParks = () => {
     fetch("http://localhost:5555/parks")
       .then((response) => response.json())
       .then((data) => {
-        setParks(data); // Assuming the API returns an array of park objects
+        setParks(data);
       })
       .catch((error) => console.error("Error fetching parks:", error));
   }, []);
 
   const handleSearchChange = (event) => {
+    // Autofill for searching parks
     const value = event.target.value;
     setSearchTerm(value);
 
@@ -32,8 +34,8 @@ const SearchParks = () => {
   };
 
   const handleSuggestionClick = (park) => {
-    setSearchTerm(""); // Clear the search field
-    setSuggestions([]); // Clear the suggestions
+    setSearchTerm("");
+    setSuggestions([]);
     navigate(`/parks/${park.id}`, { state: { selectedPark: park } });
   };
 
@@ -44,10 +46,15 @@ const SearchParks = () => {
         placeholder="Search Parks"
         value={searchTerm}
         onChange={handleSearchChange}
+        className="search-bar"
       />
       <div>
         {suggestions.map((park, index) => (
-          <div key={index} onClick={() => handleSuggestionClick(park)}>
+          <div
+            key={index}
+            onClick={() => handleSuggestionClick(park)}
+            className="suggestion-item"
+          >
             {park.name}
           </div>
         ))}
