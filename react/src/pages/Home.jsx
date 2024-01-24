@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
-
+import UserProfile from "./UserProfile"
 
 function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
   const [username, setUsername] = useState("")
@@ -73,6 +73,7 @@ function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
     user ?  (
       <div>
         <h1>Welcome to Park Lens, {user.username}!</h1>
+        <UserProfile user={user}/>
       </div>)
       :
       isReturningUser ?  (
