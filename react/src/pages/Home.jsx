@@ -39,7 +39,7 @@ function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
       'password': signupPassword
     };
   
-    fetch('http://localhost:5555/users', {
+    fetch('/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
