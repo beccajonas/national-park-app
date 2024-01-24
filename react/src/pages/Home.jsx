@@ -1,29 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
+import UserProfile from "./UserProfile";
 
-function Home({ user, handleLogin, isLoggedin }) {
+function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [signupUsername, setSignupUsername] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
-  const [signupPassword, setSignupPassword] = useState("");
   const [isReturningUser, setIsReturningUser] = useState(true);
-  const [signupFail, setSignupFail] = useState(false);
   const [signupFail, setSignupFail] = useState(false);
 
   function handleSubmit(e) {
-    e.preventDefault();
-    handleLogin({ username, password })
-      .then(() => {
-        setUsername("");
-        setPassword("");
-      })
-      .catch(() => {
-        setLoginFailed(true);
-      });
     e.preventDefault();
     handleLogin({ username, password })
       .then(() => {
@@ -57,22 +46,6 @@ function Home({ user, handleLogin, isLoggedin }) {
       },
       body: JSON.stringify(newUser),
     })
-      .then((response) => {
-        if (response.ok) {
-          setIsReturningUser(!isReturningUser);
-          setFirstName("");
-          setLastName("");
-          setSignupUsername("");
-          setSignupPassword("");
-          return response.json();
-        } else {
-          return response.json().then((error) => {
-            console.log(error);
-            setSignupFail(true);
-            setIsReturningUser(isReturningUser);
-          });
-        }
-      })
       .then((response) => {
         if (response.ok) {
           setIsReturningUser(!isReturningUser);
@@ -168,7 +141,6 @@ function Home({ user, handleLogin, isLoggedin }) {
           name="password"
           value={signupPassword}
           onChange={(e) => setSignupPassword(e.target.value)}
-          onChange={(e) => setSignupPassword(e.target.value)}
         />
       </form>
       <button onClick={handleSignUp} type="submit" className="action-button">
@@ -177,14 +149,6 @@ function Home({ user, handleLogin, isLoggedin }) {
       <button onClick={handleReturningUser} className="action-button">
         Signin
       </button>
-      {signupFail && (
-        <div className="login-failed-popup">
-          <p>
-            Username must be unique and password cannot be empty. Please try
-            again.
-          </p>
-        </div>
-      )}
       {signupFail && (
         <div className="login-failed-popup">
           <p>
