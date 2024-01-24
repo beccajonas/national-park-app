@@ -13,6 +13,7 @@ import "./App.css";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null)
+  const [showLoginFailedPopup, setShowLoginFailedPopup] = useState(false);
 
 /**********************
 Initial Fetches
@@ -30,27 +31,54 @@ Initial Fetches
 /**********************
 Authentication
 ************************/
-function handleLogin(userInfo) {
-  fetch(`http://localhost:5555/login`, {
+// function handleLogin(userInfo) {
+//   fetch(`http://localhost:5555/login`, {
+//       method: "POST",
+//       headers: {
+//           "Content-Type": "application/json",
+//           Accepts: "application/json",
+//       },
+//       body: JSON.stringify(userInfo),
+//   })
+//       .then((res) => {
+//           if (res.ok) {
+//               return res.json();
+//           }
+//           throw res;
+//       })
+//       .then((data) => {
+//         setUser(data);
+//         setIsLoggedIn(true);
+//         console.log('set login to true'); 
+//       })
+//       .catch((error) => console.error("Error logging in:", error));
+// }
+
+async function handleLogin(userInfo) {
+  try {
+    const res = await fetch(`http://localhost:5555/login`, {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
-          Accepts: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(userInfo),
-  })
-      .then((res) => {
-          if (res.ok) {
-              return res.json();
-          }
-          throw res;
-      })
-      .then((data) => {
-        setUser(data);
-        setIsLoggedIn(true);
-        console.log('set login to true'); 
-      })
-      .catch((error) => console.error("Error logging in:", error));
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      setUser(data);
+      setIsLoggedIn(true);
+      setShowLoginFailedPopup(false); 
+      console.log('set login to true');
+      return true; // successful login
+    } else {
+      throw res;
+    }
+  } catch (error) {
+    console.error("Error logging in:", error);
+    setShowLoginFailedPopup(true); 
+    return false; // failed login
+  }
 }
 
   function handleLogout() {
@@ -74,7 +102,10 @@ function handleLogin(userInfo) {
                           handleLogin={handleLogin}
                           handleLogout={handleLogout}
                           user={user}
-                          setUser={setUser} />} 
+                          setUser={setUser} 
+                          setShowLoginFailedPopup={setShowLoginFailedPopup}
+                          showLoginFailedPopup={showLoginFailedPopup}
+                          />} 
             />
             <Route path="/about" element={<About />} />
             <Route path="/parks/:id" element={<ParkProfiles />} />{" "}
