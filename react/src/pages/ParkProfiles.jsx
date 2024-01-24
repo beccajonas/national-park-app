@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import CommentSection from "../components/CommentSection";
 
 const ParkProfiles = () => {
   const [parkData, setParkData] = useState(null);
@@ -83,6 +84,8 @@ const ParkProfiles = () => {
                 <p>{post.caption}</p>
                 <p>Likes: {post.likes}</p>
                 <button onClick={() => handleLike(post.id)}>Like</button>
+                {/* Include the CommentSection component for each post */}
+                <CommentSection postId={post.id} />
               </div>
             ))}
           </div>
