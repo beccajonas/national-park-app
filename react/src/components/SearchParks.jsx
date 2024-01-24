@@ -8,10 +8,10 @@ const SearchParks = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [parks, setParks] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch all parks data from the backend
     fetch("http://localhost:5555/parks")
       .then((response) => response.json())
       .then((data) => {
@@ -21,9 +21,9 @@ const SearchParks = () => {
   }, []);
 
   const handleSearchChange = (event) => {
-    // Autofill for searching parks
     const value = event.target.value;
     setSearchTerm(value);
+    setHighlightedIndex(-1);
 
     let matches = [];
     if (value.length > 0) {
@@ -39,6 +39,20 @@ const SearchParks = () => {
     navigate(`/parks/${park.id}`, { state: { selectedPark: park } });
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setHighlightedIndex((prev) =>
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : 0));
+    } else if (event.key === "Enter" && highlightedIndex >= 0) {
+      handleSuggestionClick(suggestions[highlightedIndex]);
+    }
+  };
+
   return (
     <div>
       <input
@@ -46,6 +60,7 @@ const SearchParks = () => {
         placeholder="Search Parks"
         value={searchTerm}
         onChange={handleSearchChange}
+        onKeyDown={handleKeyDown}
         className="search-bar"
       />
       <div>
@@ -53,7 +68,9 @@ const SearchParks = () => {
           <div
             key={index}
             onClick={() => handleSuggestionClick(park)}
-            className="suggestion-item"
+            className={`suggestion-item ${
+              index === highlightedIndex ? "highlighted" : ""
+            }`}
           >
             {park.name}
           </div>
@@ -64,4 +81,3 @@ const SearchParks = () => {
 };
 
 export default SearchParks;
-
