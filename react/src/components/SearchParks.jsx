@@ -64,3 +64,4 @@ const SearchParks = () => {
 };
 
 export default SearchParks;
+

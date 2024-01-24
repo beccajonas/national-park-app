@@ -9,13 +9,11 @@ const ParkProfiles = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // Fetch park data
     const fetchParkData = async () => {
       try {
         const response = await fetch(`http://localhost:5555/parks/${id}`);
         const data = await response.json();
         setParkData(data);
-        console.log("Park data:", data);
       } catch (error) {
         console.error("Error fetching park data:", error);
       }
@@ -35,14 +33,38 @@ const ParkProfiles = () => {
     fetchPosts();
   }, [id]);
 
-  // Render park data and related posts
+  const handleLike = async (postId) => {
+    try {
+      const post = posts.find((p) => p.id === postId);
+      const updatedLikes = post.likes + 1;
+
+      const response = await fetch(`http://localhost:5555/posts/${postId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ likes: updatedLikes }),
+      });
+
+      if (response.ok) {
+        setPosts(
+          posts.map((p) =>
+            p.id === postId ? { ...p, likes: updatedLikes } : p
+          )
+        );
+        console.log(`user like`);
+      }
+    } catch (error) {
+      console.error("Error updating likes:", error);
+    }
+  };
+
   return (
     <div>
       {parkData ? (
         <div>
           <h3>{parkData.name}</h3>
           <p>{parkData.description}</p>
-          {/* Optionally display an image if available */}
           {parkData.imageUrl && (
             <img
               src={parkData.imageUrl}
@@ -60,6 +82,7 @@ const ParkProfiles = () => {
                 />
                 <p>{post.caption}</p>
                 <p>Likes: {post.likes}</p>
+                <button onClick={() => handleLike(post.id)}>Like</button>
               </div>
             ))}
           </div>

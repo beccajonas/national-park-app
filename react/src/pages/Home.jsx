@@ -1,73 +1,78 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
-import * as yup from 'yup' 
 
-function Home({user, handleLogin, isLoggedin}) {
+
+function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [signupUsername, setSignupUsername] = useState("")
-  const [signupPassword, setsignupPassword] = useState("")
+  const [signupPassword, setSignupPassword] = useState("")
   const [isReturningUser, setIsReturningUser] = useState(true)
-
-  const loginSchema = yup.object().shape({
-    username: yup.string().required('Username is required'),
-    password: yup.string().required('Password is required'),
-  });
-
-  const signupSchema = yup.object().shape({
-    firstName: yup.string().required('First Name is required'),
-    lastName: yup.string().required('Last Name is required'),
-    signupUsername: yup.string().required('Username is required'),
-    signupPassword: yup.string().required('Password is required'),
-  });
-
+  const [signupFail, setSignupFail] = useState(false)
 
   function handleSubmit(e) {
-    e.preventDefault()
-    handleLogin({username, password})
-    setUsername("")
-    setPassword("")
+    e.preventDefault();
+    handleLogin({ username, password })
+      .then(() => {
+        setUsername("");
+        setPassword("");
+      })
+      .catch(() => {
+        setLoginFailed(true);
+      });
   }
-
+  
   function handleReturningUser(e) {
     e.preventDefault()
     setIsReturningUser(!isReturningUser)
   }
 
   function handleSignUp(e) {
-    e.preventDefault()
+    e.preventDefault();
+  
     const newUser = {
       'first_name': firstName,
       'last_name': lastName,
-      'username' : signupUsername,
-      'password' : signupPassword
-    }
+      'username': signupUsername,
+      'password': signupPassword
+    };
+  
     fetch('http://localhost:5555/users', {
       method: 'POST',
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newUser),
     })
-      .then((res) => res.json()) 
-      .then(setIsReturningUser(!isReturningUser))
-      .then(
-        setFirstName(""),
-        setLastName(""),
-        setSignupUsername(""),
-        setsignupPassword("")
-      )
+      .then((response) => {
+        if (response.ok) {
+          setIsReturningUser(!isReturningUser);
+          setFirstName('');
+          setLastName('');
+          setSignupUsername('');
+          setSignupPassword('');
+          return response.json();
+        } else {
+          return response.json().then((error) => {
+            console.log(error);
+            setSignupFail(true)
+            setIsReturningUser(isReturningUser)
+          });
+        }
+      })
       .catch((error) => {
-        console.error('Error submitting logging in:', error);
+        console.error(error.message);
+        alert(error.message);
       });
   }
+  
 
   return (
     user ?  (
       <div>
-        <h1>Welcome to Park Lens!</h1>
+        <h1>Welcome to Park Lens, {user.username}!</h1>
       </div>)
       :
       isReturningUser ?  (
@@ -83,8 +88,8 @@ function Home({user, handleLogin, isLoggedin}) {
                   onChange={(e) => setUsername(e.target.value) }
                 />
                 <input
-                  type="text"
-                  placeholder="password"
+                  type="password"
+                  placeholder="Password"
                   className="input-field"
                   name="password"
                   value={password}
@@ -93,6 +98,11 @@ function Home({user, handleLogin, isLoggedin}) {
                 <button type="submit" className="action-button">Login</button>
                 <button onClick={handleReturningUser} className="action-button">Create account</button>
       </form>
+      {loginFailed && (
+            <div className="login-failed-popup">
+              <p>Login failed. Please try again.</p>
+            </div>
+          )}
     </div>) :
     <div>
       <h1>Welcome to Park Lens!</h1>
@@ -127,11 +137,16 @@ function Home({user, handleLogin, isLoggedin}) {
         className="input-field"
         name="password"
         value={signupPassword}
-        onChange={(e) => setsignupPassword(e.target.value)}
+        onChange={(e) => setSignupPassword(e.target.value)}
       />
       </form>
       <button onClick={handleSignUp} type="submit" className="action-button">Signup</button>
       <button onClick={handleReturningUser} className="action-button">Signin</button>
+      {signupFail && (
+            <div className="login-failed-popup">
+              <p>Username must be unique and password cannot be empty. Please try again.</p>
+            </div>
+          )}
     </div> 
   )
 }
