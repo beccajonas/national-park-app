@@ -1,7 +1,6 @@
 // Home.jsx
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import UserProfile from './UserProfile';
 
 function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
@@ -75,9 +74,6 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 
 	return user ? (
 		<div>
-			<h1 className='text-3xl font-serif'>
-				Welcome to Park Lens, {user.username}!
-			</h1>
 			<UserProfile user={user} />
 		</div>
 	) : isReturningUser ? (

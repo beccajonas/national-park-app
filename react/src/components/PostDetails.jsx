@@ -39,11 +39,10 @@ function PostDetails({ user, post, setSelectedPost, handlePhotoClick }) {
 				onClick={() => setSelectedPost(null)}>
 				Go back
 			</button>
-			<h1 className='text-2xl font-bold text-red-500'>{post.title}</h1>
 			<img
 				src={post.photo_url}
-				alt={post.title}
-				className='relative mt-2 rounded object-cover w-120 h-120 top-0 right-0'
+				alt={post.caption}
+				className='relative mt-2 rounded object-cover w-120 h-80 top-0 right-0'
 			/>
 			{editMode ? (
 				<input
@@ -53,9 +52,9 @@ function PostDetails({ user, post, setSelectedPost, handlePhotoClick }) {
 					onChange={(e) => setCaption(e.target.value)}
 				/>
 			) : (
-				<p className='mt-4 text-green-700'>{caption}</p>
+				<p className='mt-4 text-green-700 font-semibold font-sans'>{caption}</p>
 			)}
-			<p className='mt-4'>{post.likes}</p>
+			<p className='font-sans text-md font-semibold text-green-700'>💛 {post.likes} Likes</p>
 			<button
 				className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4'
 				onClick={handleEditButtonClick}>

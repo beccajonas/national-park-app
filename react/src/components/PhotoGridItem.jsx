@@ -14,16 +14,15 @@ function PhotoGridItem({ post, handlePhotoClick }) {
 
 	return (
 		<div>
-			<h2 className='text-lg font-semibold'>{post.title}</h2>
 			<img
 				onClick={handleDetailClick}
 				src={post.photo_url}
 				alt={post.title}
 				className='mt-2 rounded object-cover w-60 h-60'
 			/>
-			<button>♥{post.likes}</button>
+			<p className='font-sans text-md font-semibold text-green-700'>💛 {post.likes} Likes</p>
 			<></>
-			<a href={`http://localhost:5173/parks/${post.park_id}`}>{parkName}</a>
+			{/* <a href={`http://localhost:5173/parks/${post.park_id}`}>{parkName}</a> */}
 		</div>
 	);
 }
