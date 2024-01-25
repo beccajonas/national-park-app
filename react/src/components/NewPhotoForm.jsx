@@ -113,19 +113,20 @@ function NewPhotoForm({ user }) {
 	}
 
 	return (
-		<div>
+		<div className='mt-4'>
 			<form className='mt-4'>
 				<input
 					type='file'
 					accept='image/png, image/jpeg'
 					name='photo'
-					className='mb-2'
+					className='block w-full text-sm bg-green-700 hover:bg-yellow-500 text-white
+          file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-blue-700'
 					onChange={(e) => setFile(e.target.files[0])}
 				/>
 				<input
 					type='text'
 					placeholder='Caption'
-					className='input-field mb-2'
+					className='input-field mb-2 resize-y'
 					name='caption'
 					value={caption}
 					onChange={(e) => setCaption(e.target.value)}
