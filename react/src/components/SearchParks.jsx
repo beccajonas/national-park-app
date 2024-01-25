@@ -1,6 +1,4 @@
-// SearchParks.jsx
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
@@ -10,6 +8,7 @@ const SearchParks = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     fetch("http://localhost:5555/parks")
@@ -19,6 +18,20 @@ const SearchParks = () => {
       })
       .catch((error) => console.error("Error fetching parks:", error));
   }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setSuggestions([]);
+    }
+  };
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -54,28 +67,33 @@ const SearchParks = () => {
   };
 
   return (
-    <div>
+    <div className="relative">
       <input
         type="text"
-        placeholder="Search Parks"
+        placeholder="Search Parks..."
         value={searchTerm}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        className="search-bar"
+        className="search-bar focus:outline-none"
       />
-      <div>
-        {suggestions.map((park, index) => (
-          <div
-            key={index}
-            onClick={() => handleSuggestionClick(park)}
-            className={`suggestion-item ${
-              index === highlightedIndex ? "highlighted" : ""
-            }`}
-          >
-            {park.name}
-          </div>
-        ))}
-      </div>
+      {suggestions.length > 0 && (
+        <div
+          ref={dropdownRef}
+          className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg"
+        >
+          {suggestions.map((park, index) => (
+            <div
+              key={index}
+              onClick={() => handleSuggestionClick(park)}
+              className={`p-2 cursor-pointer suggestion-item ${
+                index === highlightedIndex ? "highlighted-item" : ""
+              }`}
+            >
+              {park.name}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
