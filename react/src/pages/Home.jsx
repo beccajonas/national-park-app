@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
 import UserProfile from "./UserProfile"
+import { useState } from "react";
+import UserProfile from "./UserProfile";
 
 function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
   const [username, setUsername] = useState("")
@@ -31,6 +33,7 @@ function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
 
   function handleSignUp(e) {
     e.preventDefault();
+
   
     const newUser = {
       'first_name': firstName,
@@ -38,6 +41,9 @@ function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
       'username': signupUsername,
       'password': signupPassword
     };
+
+    fetch("http://localhost:5555/users", {
+      method: "POST",
   
     fetch('/users', {
       method: 'POST',
@@ -62,9 +68,24 @@ function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
           });
         }
       })
+      .then(() => {
+        // Automatically log the user in after successful signup
+        return handleLogin({
+          username: signupUsername,
+          password: signupPassword,
+        });
+      })
+      .then(() => {
+        // Reset form fields and update states if necessary
+        setFirstName("");
+        setLastName("");
+        setSignupUsername("");
+        setSignupPassword("");
+        // Assuming handleLogin updates user state, no need to change isReturningUser here
+      })
       .catch((error) => {
         console.error(error.message);
-        alert(error.message);
+        setSignupFail(true);
       });
   }
   
