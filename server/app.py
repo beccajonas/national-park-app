@@ -1,4 +1,4 @@
-from flask import Flask, make_response, jsonify, request, session, render_template, json
+from flask import Flask, make_response, jsonify, request, session, render_template, json, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import datetime
@@ -67,14 +67,14 @@ def logout():
 @app.post('/upload')
 def upload_photo():
     if 'file' not in request.files:
-        return "No file"
+        abort(400, "Bad Request: No file")
     
     file = request.files['file']
     json_data = request.form.get('json_data')
     print(json_data)
 
     if file.filename == '' or not json_data:
-        return "Missing file or JSON data"
+        abort(400, "Bad Request: Missing file or JSON data")
     
     try:
         data = json.loads(json_data)
@@ -98,7 +98,7 @@ def upload_photo():
         return new_post.to_dict(rules=['-user', '-park' ])
     
     except NoCredentialsError:
-        return "Credentials not available"
+        abort(500, "Internal Server Error: Credentials not available")
 
     
 # Post user
