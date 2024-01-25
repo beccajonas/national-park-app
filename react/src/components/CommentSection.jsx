@@ -70,9 +70,25 @@ const CommentSection = ({ postId, userId }) => {
       const newComment = await response.json();
       setComments([...comments, newComment]);
       setNewCommentText("");
-      console.log("New comment posted:", newComment);
     } catch (error) {
       console.error("Error posting comment:", error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5555/comments/${commentId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      setComments(comments.filter((comment) => comment.id !== commentId));
+    } catch (error) {
+      console.error("Error deleting comment:", error);
     }
   };
 
@@ -97,6 +113,11 @@ const CommentSection = ({ postId, userId }) => {
           {comments.map((comment) => (
             <li key={comment.id}>
               <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
+              {comment.user_id === userId && (
+                <button onClick={() => handleDeleteComment(comment.id)}>
+                  Delete
+                </button>
+              )}
             </li>
           ))}
         </ul>
