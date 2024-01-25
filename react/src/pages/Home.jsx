@@ -1,8 +1,7 @@
-import {useState, useEffect} from "react"
-import {useNavigate} from "react-router-dom";
 import UserProfile from "./UserProfile"
+import { useState } from "react"
 
-function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
+function Home({user, handleLogin, loginFailed, setLoginFailed}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
@@ -31,40 +30,55 @@ function Home({user, handleLogin, isLoggedin, loginFailed, setLoginFailed}) {
 
   function handleSignUp(e) {
     e.preventDefault();
-  
+
     const newUser = {
       'first_name': firstName,
       'last_name': lastName,
       'username': signupUsername,
       'password': signupPassword
     };
-  
-    fetch('/users', {
+
+    fetch('http://localhost:5555/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newUser),
     })
-      .then((response) => {
-        if (response.ok) {
+      .then(res => {
+        if (res.ok) {
           setIsReturningUser(!isReturningUser);
           setFirstName('');
           setLastName('');
           setSignupUsername('');
           setSignupPassword('');
-          return response.json();
+          return res.json();
         } else {
-          return response.json().then((error) => {
+          return res.json().then((error) => {
             console.log(error);
             setSignupFail(true)
             setIsReturningUser(isReturningUser)
           });
         }
       })
+      .then(() => {
+        // Automatically log the user in after successful signup
+        return handleLogin({
+          username: signupUsername,
+          password: signupPassword,
+        });
+      })
+      .then(() => {
+        // Reset form fields and update states if necessary
+        setFirstName("");
+        setLastName("");
+        setSignupUsername("");
+        setSignupPassword("");
+        // Assuming handleLogin updates user state, no need to change isReturningUser here
+      })
       .catch((error) => {
         console.error(error.message);
-        alert(error.message);
+        setSignupFail(true);
       });
   }
   
