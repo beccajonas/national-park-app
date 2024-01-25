@@ -1,10 +1,9 @@
 import {useState, useEffect} from "react";
 
-function PostDetails({ user, post, setSelectedPost }) {
+function PostDetails({ user, post, setSelectedPost, handlePhotoClick }) {
   const [editMode, setEditMode] = useState(false)
   const [caption, setCaption] = useState(post.caption)
   const [editedPost, setEditedPost] = useState(post)
-  console.log(post.id);
 
   useEffect(() => {
     fetch(`http://localhost:5555/posts/${post.id}`)
@@ -46,11 +45,12 @@ function PostDetails({ user, post, setSelectedPost }) {
         value={caption}
         onChange={(e) => setCaption(e.target.value)}
       /> 
-      : <p className="mt-4">{caption}</p>}
+      : <p className="mt-4 text-green-700">{caption}</p>}
       <p className="mt-4">{post.likes}</p>
       <button className="bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4" onClick={handleEditButtonClick}>
       {editMode? 'Save' : 'Edit' }
   </button>
+
     </div>
   );
 }
