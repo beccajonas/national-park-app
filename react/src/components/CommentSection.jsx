@@ -2,15 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "../App.css";
 
 const CommentSection = ({ postId, userId }) => {
   const [comments, setComments] = useState([]);
+  const [users, setUsers] = useState({});
   const [newCommentText, setNewCommentText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchComments();
+    fetchUsers();
   }, [postId]);
 
   const fetchComments = async () => {
@@ -28,6 +29,23 @@ const CommentSection = ({ postId, userId }) => {
       console.error("Error fetching comments:", error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:5555/users");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      const usersMap = data.reduce((acc, user) => {
+        acc[user.id] = user.username;
+        return acc;
+      }, {});
+      setUsers(usersMap);
+    } catch (error) {
+      console.error("Error fetching users:", error);
     }
   };
 
@@ -72,10 +90,14 @@ const CommentSection = ({ postId, userId }) => {
           Post
         </button>
       </form>
-      {comments.length > 0 ? (
+      {isLoading ? (
+        <p>Loading comments...</p>
+      ) : comments.length > 0 ? (
         <ul>
           {comments.map((comment) => (
-            <li key={comment.id}>{comment.comment_text}</li>
+            <li key={comment.id}>
+              <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
+            </li>
           ))}
         </ul>
       ) : (
