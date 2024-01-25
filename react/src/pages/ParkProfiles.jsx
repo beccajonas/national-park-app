@@ -101,7 +101,7 @@ const ParkProfiles = () => {
                   />
                   <p className="ml-[1px] font-bold">{post.likes} Likes</p>
                 </div>
-                <CommentSection postId={post.id} />
+                <CommentSection postId={post.id} userId={post.user_id} />
               </div>
             ))}
           </div>
