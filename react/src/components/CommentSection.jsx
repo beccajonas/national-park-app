@@ -1,5 +1,8 @@
+// CommentSection.jsx
+
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import "../App.css";
 
 const CommentSection = ({ postId, userId }) => {
   const [comments, setComments] = useState([]);
@@ -49,26 +52,25 @@ const CommentSection = ({ postId, userId }) => {
       const newComment = await response.json();
       setComments([...comments, newComment]);
       setNewCommentText("");
+      console.log("New comment posted:", newComment);
     } catch (error) {
       console.error("Error posting comment:", error);
     }
   };
 
-  if (isLoading) {
-    return <p>Loading comments...</p>;
-  }
-
   return (
     <div className="comment-section">
-      <h4>Comments</h4>
-      <form onSubmit={handleCommentSubmit}>
+      <form onSubmit={handleCommentSubmit} className="comment-form">
         <textarea
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
           placeholder="Write a comment..."
           required
+          className="comment-textarea bg-transparent w-full text-black focus:outline-none"
         />
-        <button type="submit">Post Comment</button>
+        <button type="submit" className="comment-submit mt-2 font-bold">
+          Post
+        </button>
       </form>
       {comments.length > 0 ? (
         <ul>
@@ -77,7 +79,7 @@ const CommentSection = ({ postId, userId }) => {
           ))}
         </ul>
       ) : (
-        <p>No comments yet.</p>
+        <p className="comment-no-comments">No comments yet.</p>
       )}
     </div>
   );

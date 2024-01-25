@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CommentSection from "../components/CommentSection";
+import Heart from "react-animated-heart";
 
 const ParkProfiles = () => {
   const [parkData, setParkData] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [heartClicked, setHeartClicked] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,6 +27,11 @@ const ParkProfiles = () => {
         const response = await fetch(`http://localhost:5555/posts/park/${id}`);
         const data = await response.json();
         setPosts(data);
+        const heartClickedInit = {};
+        data.forEach((post) => {
+          heartClickedInit[post.id] = false;
+        });
+        setHeartClicked(heartClickedInit);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -37,7 +44,8 @@ const ParkProfiles = () => {
   const handleLike = async (postId) => {
     try {
       const post = posts.find((p) => p.id === postId);
-      const updatedLikes = post.likes + 1;
+      const isLiked = heartClicked[postId];
+      const updatedLikes = post.likes + (isLiked ? -1 : 1);
 
       const response = await fetch(`http://localhost:5555/posts/${postId}`, {
         method: "PATCH",
@@ -53,7 +61,7 @@ const ParkProfiles = () => {
             p.id === postId ? { ...p, likes: updatedLikes } : p
           )
         );
-        console.log(`user like`);
+        setHeartClicked({ ...heartClicked, [postId]: !isLiked });
       }
     } catch (error) {
       console.error("Error updating likes:", error);
@@ -64,27 +72,35 @@ const ParkProfiles = () => {
     <div>
       {parkData ? (
         <div>
-          <h3>{parkData.name}</h3>
-          <p>{parkData.description}</p>
+          <h3 className="photo-title text-2xl font-semibold mb-3">
+            {parkData.name}
+          </h3>{" "}
+          <p className="photo-description text-lg mb-4">
+            {parkData.description}
+          </p>{" "}
           {parkData.imageUrl && (
             <img
               src={parkData.imageUrl}
               alt={parkData.name}
-              style={{ width: "100%", height: "auto" }}
+              className="w-full h-auto mb-4"
             />
           )}
           <div className="posts-container">
             {posts.map((post) => (
-              <div key={post.id} className="post">
+              <div key={post.id} className="post mb-6">
                 <img
                   src={post.photo_url}
                   alt={post.caption}
-                  style={{ width: "100%", height: "auto" }}
+                  className="w-full h-auto mb-2"
                 />
-                <p>{post.caption}</p>
-                <p>Likes: {post.likes}</p>
-                <button onClick={() => handleLike(post.id)}>Like</button>
-                {/* Include the CommentSection component for each post */}
+                <p className="photo-caption text-lg mb-2">{post.caption}</p>{" "}
+                <div className="flex items-center mb-2">
+                  <Heart
+                    isClick={heartClicked[post.id]}
+                    onClick={() => handleLike(post.id)}
+                  />
+                  <p className="ml-[1px] font-bold">{post.likes} Likes</p>
+                </div>
                 <CommentSection postId={post.id} />
               </div>
             ))}
