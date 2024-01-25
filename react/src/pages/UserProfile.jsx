@@ -11,6 +11,7 @@ function UserProfile({ user }) {
     const [caption, setCaption] = useState("")
     const [file, setFile] = useState(null)
 
+
     const parks = [
       "Arches National Park",
       "Badlands National Park",
@@ -76,8 +77,6 @@ function UserProfile({ user }) {
       "Zion National Park"
     ]
 
-    console.log(addPhoto);
-
     useEffect(() => {
         fetch(`http://localhost:5555/users/${user.id}`)
           .then((res) => res.json())
@@ -87,6 +86,7 @@ function UserProfile({ user }) {
 
       function handlePhotoClick(clickedPost) {
         setSelectedPost(clickedPost);
+        console.log(selectedPost);
         console.log('click');
       };
 

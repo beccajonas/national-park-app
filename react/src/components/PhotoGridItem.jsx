@@ -6,7 +6,10 @@ function PhotoGridItem({ post, handlePhotoClick }) {
 
   function handleDetailClick() {
     handlePhotoClick(post)
+      console.log(post);
   }
+
+
 
   return (
     <div className="bg-gray-200 p-4 rounded h-80 w-80">
