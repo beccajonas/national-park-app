@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "tailwindcss": "^3.4.1"
-  },
-  "dependencies": {
-    "react-animated-heart": "^0.0.8"
-  }
-}
