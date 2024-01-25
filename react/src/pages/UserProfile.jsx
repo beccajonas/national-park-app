@@ -83,7 +83,7 @@ function UserProfile({ user }) {
           .then((res) => res.json())
           .then((data) => setUserPosts(data.posts))
           .catch((error) => console.error("Error fetching posts:", error));
-      }, []);
+      }, [selectedPost]);
 
       function handlePhotoClick(clickedPost) {
         setSelectedPost(clickedPost);
@@ -126,7 +126,6 @@ function UserProfile({ user }) {
           })
           .catch((error) => {
             console.error('Error uploading post:', error);
-            // Handle error, show error message, etc.
           });
       }
       
@@ -175,7 +174,7 @@ function UserProfile({ user }) {
       </form>
     </div>
   ) : selectedPost ? (
-    <PostDetails post={selectedPost} setSelectedPost={setSelectedPost} />
+    <PostDetails post={selectedPost} setSelectedPost={setSelectedPost} user={user} />
   ) : (
     
     <div className="grid grid-cols-3 gap-4 mt-4 w-81" >

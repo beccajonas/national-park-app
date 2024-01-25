@@ -203,7 +203,7 @@ def get_parks_by_id(id):
 @app.get("/posts/<int:id>")
 def get_posts_by_id(id):
     post = db.session.get(Post, id)
-    return post.to_dict(rules=['-park', '-user'])
+    return post.to_dict(rules=['-user'])
 
 # Patch a post
 @app.patch("/posts/<int:id>")
