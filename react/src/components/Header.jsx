@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import logo from '../../images/resized_nature_photography_logo_100x100 (2).png';
 
-const Header = ({ isLoggedIn, handleLogout }) => {
+const Header = ({ isLoggedIn, handleLogout, user }) => {
 	return (
 		<header>
 			<Link
@@ -24,6 +24,7 @@ const Header = ({ isLoggedIn, handleLogout }) => {
 				Park Lens
 			</Link>
 			<Navigation
+        user={user}
 				isLoggedIn={isLoggedIn}
 				handleLogout={handleLogout}
 			/>

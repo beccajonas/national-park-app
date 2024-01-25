@@ -9,7 +9,6 @@ import {
 	Link,
 } from 'react-router-dom';
 import Header from './components/Header';
-import Layout from './components/Layout';
 import SearchParks from './components/SearchParks';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -21,11 +20,11 @@ function App() {
 	const [user, setUser] = useState(null);
 	const [loginFailed, setLoginFailed] = useState(false);
 
-	/**********************
+/**********************
 Initial Fetches
 ************************/
 	useEffect(() => {
-		fetch(`http://localhost:5555/check_session`)
+		fetch(`/api/check_session`)
 			.then((res) => {
 				if (res.ok) {
 					res.json().then((data) => setUser(data));
@@ -40,7 +39,7 @@ Authentication
 
 	async function handleLogin(userInfo) {
 		try {
-			const res = await fetch(`http://localhost:5555/login`, {
+			const res = await fetch(`api/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -66,7 +65,7 @@ Authentication
 	}
 
 	function handleLogout() {
-		fetch(`http://localhost:5555/logout`, { method: 'DELETE' }).then((res) => {
+		fetch(`/api/logout`, { method: 'DELETE' }).then((res) => {
 			if (res.ok) {
 				setUser(null);
 				console.log('set login to false');
@@ -79,10 +78,10 @@ Authentication
 		<Router>
 			<div className='App'>
 				<Header
+					user={user}
 					isLoggedIn={isLoggedIn}
 					handleLogout={handleLogout}
 				/>
-				<Layout>
 					<Routes>
 						<Route
 							path='/'
@@ -114,7 +113,6 @@ Authentication
 						{/* Optional: Added route for SearchParks */}
 						{/* You can add more routes here as needed */}
 					</Routes>
-				</Layout>
 			</div>
 		</Router>
 	);

@@ -34,9 +34,9 @@ def index():
     return "national parks backend"
 
 # Check session
-@app.get('/check_session')
+@app.get('/api/check_session')
 def check_session():
-    user = db.session.get(User, session.get('id'))
+    user = db.session.get(User, session.get('user_id'))
     print(f'check session: {user}')
     if user:
         return user.to_dict(rules=['-password']), 200
@@ -44,7 +44,7 @@ def check_session():
         return {"message": "No user logged in"}, 401
     
 # Login
-@app.post('/login')
+@app.post('/api/login')
 def login():
     data = request.json
 
@@ -58,13 +58,13 @@ def login():
         return { "error": "Invalid username or password" }, 401
     
 # Logout
-@app.delete('/logout')
+@app.delete('/api/logout')
 def logout():
     session.pop('user_id', None) 
     return { "message": "Logged out"}, 200
 
 # Post photo + post
-@app.post('/upload')
+@app.post('/api/upload')
 def upload_photo():
     if 'file' not in request.files:
         abort(400, "Bad Request: No file")
@@ -102,7 +102,7 @@ def upload_photo():
 
     
 # Post user
-@app.post('/users')
+@app.post('/api/users')
 def post_new_user():
     try:
         data = request.json
@@ -127,7 +127,7 @@ def post_new_user():
         return {"Error": str(e)}, 400
 
 # Post comments
-@app.post('/comments')
+@app.post('/api/comments')
 def post_comments():
     try:
         data = request.json
@@ -146,7 +146,7 @@ def post_comments():
     except Exception as e:
         return {"Error": str(e)}, 400 
     
-@app.get("/comments/post/<int:post_id>")
+@app.get("/api/comments/post/<int:post_id>")
 def get_comments_by_post_id(post_id):
     comments = Comment.query.filter_by(post_id=post_id).all()
     if comments:
@@ -156,7 +156,7 @@ def get_comments_by_post_id(post_id):
         return jsonify({"message": "No comments found for this post"}), 404
 
 # Get users
-@app.get("/users")
+@app.get("/api/users")
 def get_users():
     users = User.query.all()
     return [u.to_dict(rules=['-password', 
@@ -172,19 +172,19 @@ def get_users():
         '-posts.user_id']) for u in users]
 
 # Get posts
-@app.get("/posts")
+@app.get("/api/posts")
 def get_posts():
     posts = Post.query.all()
     return [p.to_dict(rules=['-park', '-user']) for p in posts]
 
 # Get parks
-@app.get("/parks")
+@app.get("/api/parks")
 def get_parks():
     parks = Park.query.all()
     return [p.to_dict(rules=['-posts.comments', '-posts.user']) for p in parks]
 
 # Get parks posts by ID
-@app.get("/posts/park/<int:park_id>")
+@app.get("/api/posts/park/<int:park_id>")
 def get_posts_by_park_id(park_id):
     posts = Post.query.filter_by(park_id=park_id).all()
     if not posts:
@@ -192,7 +192,7 @@ def get_posts_by_park_id(park_id):
     return jsonify([post.to_dict() for post in posts]), 200
 
 # Get user by ID
-@app.get("/users/<int:id>")
+@app.get("/api/users/<int:id>")
 def get_users_by_id(id):
     user = db.session.get(User, id)
     return user.to_dict(rules=['-password',
@@ -203,19 +203,19 @@ def get_users_by_id(id):
         '-posts.park'])
 
 # Get park by ID
-@app.get("/parks/<int:id>")
+@app.get("/api/parks/<int:id>")
 def get_parks_by_id(id):
     park = db.session.get(Park, id)
     return park.to_dict(rules=['-posts.user', '-posts.comments'])
 
 # Get posts by ID
-@app.get("/posts/<int:id>")
+@app.get("/api/posts/<int:id>")
 def get_posts_by_id(id):
     post = db.session.get(Post, id)
     return post.to_dict(rules=['-user'])
 
 # Patch a post
-@app.patch("/posts/<int:id>")
+@app.patch("/api/posts/<int:id>")
 def patch_post_likes(id):
     data = request.json
     post = db.session.get(Post, id)
@@ -229,7 +229,7 @@ def patch_post_likes(id):
     return post.to_dict(rules=['-user']), 201 
 
 # Delete post
-@app.delete("/posts/<int:id>")
+@app.delete("/api/posts/<int:id>")
 def delete_post_by_id(id):
     post = db.session.get(Post, id)
     if not post:
@@ -239,7 +239,7 @@ def delete_post_by_id(id):
     return {}
 
 # Delete comment
-@app.delete("/comments/<int:id>")
+@app.delete("/api/comments/<int:id>")
 def delete_comment_by_id(id):
     comment = db.session.get(Comment, id)
     if not comment:

@@ -6,7 +6,7 @@ function PostDetails({ user, post, setSelectedPost, handlePhotoClick }) {
 	const [editedPost, setEditedPost] = useState(post);
 
 	useEffect(() => {
-		fetch(`http://localhost:5555/posts/${post.id}`)
+		fetch(`/api/posts/${post.id}`)
 			.then((res) => res.json())
 			.then((data) => setEditedPost(data));
 	}, [caption]);
@@ -23,7 +23,7 @@ function PostDetails({ user, post, setSelectedPost, handlePhotoClick }) {
 			park_id: post.park_id,
 		};
 
-		fetch(`http://localhost:5555/posts/${post.id}`, {
+		fetch(`/api/posts/${post.id}`, {
 			method: 'PATCH',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(updatedPost),

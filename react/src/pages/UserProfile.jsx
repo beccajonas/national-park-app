@@ -10,7 +10,7 @@ function UserProfile({ user }) {
 	const [addPhoto, setAddPhoto] = useState(false);
 
 	useEffect(() => {
-		fetch(`http://localhost:5555/users/${user.id}`)
+		fetch(`/api/users/${user.id}`)
 			.then((res) => res.json())
 			.then((data) => setUserPosts(data.posts))
 			.catch((error) => console.error('Error fetching posts:', error));
