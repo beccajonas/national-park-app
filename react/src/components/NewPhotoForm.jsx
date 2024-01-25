@@ -88,7 +88,7 @@ function NewPhotoForm({ user }) {
 			})
 		);
 
-		fetch('http://localhost:5555/upload', {
+		fetch('/api/upload', {
 			method: 'POST',
 			body: formData,
 		})
@@ -119,8 +119,9 @@ function NewPhotoForm({ user }) {
 					type='file'
 					accept='image/png, image/jpeg'
 					name='photo'
-					className='block w-full text-sm bg-green-700 hover:bg-yellow-500 text-white
-          file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-blue-700'
+					className='block mb-3 text-sm text-green-700
+          file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
+          file:bg-yellow-500 file:text-green-700 file:hover:bg-green-700 file:hover:text-yellow-500'
 					onChange={(e) => setFile(e.target.files[0])}
 				/>
 				<input

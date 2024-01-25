@@ -8,7 +8,7 @@ function PhotoGridItem({ post, handlePhotoClick }) {
 		handlePhotoClick(post);
 	}
 
-	fetch(`http://localhost:5555/parks/${post.park_id}`)
+	fetch(`/api/parks/${post.park_id}`)
 		.then((res) => res.json())
 		.then((data) => setParkName(data.name));
 
@@ -22,7 +22,12 @@ function PhotoGridItem({ post, handlePhotoClick }) {
 			/>
 			<p className='font-sans text-md font-semibold text-green-700'>💛 {post.likes} Likes</p>
 			<></>
-			{/* <a href={`http://localhost:5173/parks/${post.park_id}`}>{parkName}</a> */}
+			<a
+      href={`http://localhost:5173/parks/${post.park_id}`}
+      className='font-sans text-xs font-semibold text-green-700 hover:underline'
+      >
+      {parkName}
+      </a>
 		</div>
 	);
 }

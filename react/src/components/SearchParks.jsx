@@ -13,7 +13,7 @@ const SearchParks = () => {
 	const dropdownRef = useRef(null);
 
 	useEffect(() => {
-		fetch('http://localhost:5555/parks')
+		fetch('/api/parks')
 			.then((response) => response.json())
 			.then((data) => {
 				setParks(data);

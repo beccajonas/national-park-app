@@ -18,7 +18,7 @@ const CommentSection = ({ postId, userId }) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5555/comments/post/${postId}`
+        `/api/comments/post/${postId}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -34,7 +34,7 @@ const CommentSection = ({ postId, userId }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5555/users");
+      const response = await fetch("/api/users");
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -52,7 +52,7 @@ const CommentSection = ({ postId, userId }) => {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5555/comments", {
+      const response = await fetch("/api/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const CommentSection = ({ postId, userId }) => {
   const handleDeleteComment = async (commentId) => {
     try {
       const response = await fetch(
-        `http://localhost:5555/comments/${commentId}`,
+        `/api/comments/${commentId}`,
         {
           method: "DELETE",
         }

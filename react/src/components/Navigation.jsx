@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchParks from './SearchParks';
 
-const Navigation = ({ isLoggedIn, handleLogout }) => {
+const Navigation = ({ isLoggedIn, handleLogout, user }) => {
 	function handleSignOut() {
 		handleLogout();
 	}
@@ -31,7 +31,7 @@ const Navigation = ({ isLoggedIn, handleLogout }) => {
 					</NavLink>
 				</li>
 				<li>
-					{isLoggedIn ? (
+					{user ? (
 						<button
 							onClick={handleSignOut}
 							className='nav-button'>

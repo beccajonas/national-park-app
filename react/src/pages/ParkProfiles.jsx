@@ -14,7 +14,7 @@ const ParkProfiles = () => {
 	useEffect(() => {
 		const fetchParkData = async () => {
 			try {
-				const response = await fetch(`http://localhost:5555/parks/${id}`);
+				const response = await fetch(`/api/parks/${id}`);
 				const data = await response.json();
 				setParkData(data);
 			} catch (error) {
@@ -24,7 +24,7 @@ const ParkProfiles = () => {
 
 		const fetchPosts = async () => {
 			try {
-				const response = await fetch(`http://localhost:5555/posts/park/${id}`);
+				const response = await fetch(`/api/posts/park/${id}`);
 				const data = await response.json();
 				setPosts(data);
 				const heartClickedInit = {};
@@ -47,7 +47,7 @@ const ParkProfiles = () => {
 			const isLiked = heartClicked[postId];
 			const updatedLikes = post.likes + (isLiked ? -1 : 1);
 
-			const response = await fetch(`http://localhost:5555/posts/${postId}`, {
+			const response = await fetch(`/api/posts/${postId}`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',
