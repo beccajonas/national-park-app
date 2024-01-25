@@ -1,4 +1,5 @@
 // CommentSection.jsx
+
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -13,23 +14,23 @@ const CommentSection = ({ postId, userId }) => {
     fetchUsers();
   }, [postId]);
 
-	const fetchComments = async () => {
-		setIsLoading(true);
-		try {
-			const response = await fetch(
-				`http://localhost:5555/comments/post/${postId}`
-			);
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-			const data = await response.json();
-			setComments(data);
-		} catch (error) {
-			console.error('Error fetching comments:', error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+  const fetchComments = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:5555/comments/post/${postId}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setComments(data);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const fetchUsers = async () => {
     try {
@@ -63,18 +64,18 @@ const CommentSection = ({ postId, userId }) => {
         }),
       });
 
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-			const newComment = await response.json();
-			setComments([...comments, newComment]);
-			setNewCommentText('');
-			console.log('New comment posted:', newComment);
-		} catch (error) {
-			console.error('Error posting comment:', error);
-		}
-	};
-      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const newComment = await response.json();
+      setComments([...comments, newComment]);
+      setNewCommentText("");
+      console.log("New comment posted:", newComment);
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
   return (
     <div className="comment-section">
       <form onSubmit={handleCommentSubmit} className="comment-form">
@@ -107,8 +108,8 @@ const CommentSection = ({ postId, userId }) => {
 };
 
 CommentSection.propTypes = {
-	postId: PropTypes.number.isRequired,
-	userId: PropTypes.number.isRequired,
+  postId: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
 };
 
 export default CommentSection;
