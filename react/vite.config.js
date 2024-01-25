@@ -13,7 +13,7 @@ export default defineConfig({
 // export default defineConfig({
 //   server: {
 //     proxy: {
-//       '/api':'http://localhost:5555',
+//       '/*':'http://localhost:5555',
 //     },
 //   },
 //   plugins: [react()],

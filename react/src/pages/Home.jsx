@@ -59,7 +59,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
               setLoginFailed(true);
             });
         } else {
-          return response.json().then((error) => {
+          return res.json().then((error) => {
             console.log(error);
             setSignupFail(true);
           });
