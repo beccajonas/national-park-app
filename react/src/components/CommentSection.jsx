@@ -1,4 +1,5 @@
 // CommentSection.jsx
+
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -13,23 +14,23 @@ const CommentSection = ({ postId, userId }) => {
     fetchUsers();
   }, [postId]);
 
-	const fetchComments = async () => {
-		setIsLoading(true);
-		try {
-			const response = await fetch(
-				`/api/comments/post/${postId}`
-			);
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-			const data = await response.json();
-			setComments(data);
-		} catch (error) {
-			console.error('Error fetching comments:', error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+  const fetchComments = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `/api/comments/post/${postId}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setComments(data);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const fetchUsers = async () => {
     try {
@@ -63,18 +64,34 @@ const CommentSection = ({ postId, userId }) => {
         }),
       });
 
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-			const newComment = await response.json();
-			setComments([...comments, newComment]);
-			setNewCommentText('');
-			console.log('New comment posted:', newComment);
-		} catch (error) {
-			console.error('Error posting comment:', error);
-		}
-	};
-      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const newComment = await response.json();
+      setComments([...comments, newComment]);
+      setNewCommentText("");
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await fetch(
+        `/api/comments/${commentId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      setComments(comments.filter((comment) => comment.id !== commentId));
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
+
   return (
     <div className="comment-section">
       <form onSubmit={handleCommentSubmit} className="comment-form">
@@ -96,6 +113,11 @@ const CommentSection = ({ postId, userId }) => {
           {comments.map((comment) => (
             <li key={comment.id}>
               <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
+              {comment.user_id === userId && (
+                <button onClick={() => handleDeleteComment(comment.id)}>
+                  Delete
+                </button>
+              )}
             </li>
           ))}
         </ul>
@@ -107,8 +129,8 @@ const CommentSection = ({ postId, userId }) => {
 };
 
 CommentSection.propTypes = {
-	postId: PropTypes.number.isRequired,
-	userId: PropTypes.number.isRequired,
+  postId: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
 };
 
 export default CommentSection;
