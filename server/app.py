@@ -145,6 +145,15 @@ def post_comments():
     
     except Exception as e:
         return {"Error": str(e)}, 400 
+    
+@app.get("/comments/post/<int:post_id>")
+def get_comments_by_post_id(post_id):
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    if comments:
+        # Serialize the comments using the rules defined in your model
+        return jsonify([comment.to_dict() for comment in comments]), 200
+    else:
+        return jsonify({"message": "No comments found for this post"}), 404
 
 # Get users
 @app.get("/users")
