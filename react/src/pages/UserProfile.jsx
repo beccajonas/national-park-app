@@ -129,61 +129,62 @@ function UserProfile({ user }) {
       }
       
 
-  return (
-  <div className="mt-4">
-  <h1 className="text-2xl font-bold text-red-500">{user.username}'s profile</h1>
-  <button className="bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full" onClick={handleAddPhotoClick}>
-  {addPhoto ? 'Go back' : 'Add photo' }
-  </button>
-  {addPhoto ? (
-    <div>
-      <form className="mt-4">
-        <input
-          type="file"
-          accept="image/png, image/jpeg"
-          name="photo"
-          className="mb-2"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <input
-          type="text"
-          placeholder="Caption"
-          className="input-field mb-2"
-          name="caption"
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-        />
-        <select
-          value={selectedPark}
-          onChange={(e) => setSelectedPark(e.target.value)}
-          className="input-field mb-2"
-          >
-          <option value="" disabled>Select a park</option>
-          {parks.map((park) => (
-              <option key={park} value={park}>{park}</option>
-          ))}
-        </select>
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-        >
-          Post
-        </button>
-      </form>
-    </div>
-  ) : selectedPost ? (
-    <PostDetails post={selectedPost} setSelectedPost={setSelectedPost} user={user} />
-  ) : (
-    
-    <div className="grid grid-cols-3 gap-4 mt-4 w-81" >
-      {userPosts.map((post) => (
-        <PhotoGridItem key={post.id} post={post} handlePhotoClick={handlePhotoClick} />
-      ))}
-    </div>
-  )}
-</div>)
-}
+      return (
+        <div className="mt-4 mx-auto max-w-4xl p-4">
+          <h1 className="text-2xl font-bold text-red-500">{user.username}'s profile</h1>
+          <button className="bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full" onClick={handleAddPhotoClick}>
+            {addPhoto ? 'Go back' : 'Add photo'}
+          </button>
+          {addPhoto ? (
+            <div>
+              <form className="mt-4">
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  name="photo"
+                  className="mb-2"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+                <input
+                  type="text"
+                  placeholder="Caption"
+                  className="input-field mb-2"
+                  name="caption"
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                />
+                <select
+                  value={selectedPark}
+                  onChange={(e) => setSelectedPark(e.target.value)}
+                  className="input-field mb-2"
+                >
+                  <option value="" disabled>Select a park</option>
+                  {parks.map((park) => (
+                    <option key={park} value={park}>{park}</option>
+                  ))}
+                </select>
+                <button
+                  type="submit"
+                  onClick={(e) => { e.preventDefault(); handleSubmit(); }}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                >
+                  Post
+                </button>
+              </form>
+              <h2>{postAttempt && postFail ? "Post failed. File cannot be read. Must select a park. Try again." : "Post successful!"}</h2>
+            </div>
+          ) : selectedPost ? (
+            <PostDetails post={selectedPost} setSelectedPost={setSelectedPost} user={user} />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center">
+              {userPosts.map((post) => (
+                <PhotoGridItem key={post.id} post={post} handlePhotoClick={handlePhotoClick} />
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
 
 export default UserProfile;
 
