@@ -87,13 +87,12 @@ function UserProfile({ user }) {
       function handlePhotoClick(clickedPost) {
         setSelectedPost(clickedPost);
         console.log(selectedPost);
-        console.log('click');
+
       };
 
       function handleAddPhotoClick() {
         console.log('click');
         setAddPhoto(!addPhoto)
-        console.log(addPhoto);
       }
 
       function handleSubmit(e) {

@@ -65,10 +65,10 @@ class Post(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     caption = db.Column(db.String(255), nullable=False)
     likes = db.Column(db.Integer, default=0)
-    photo_url = db.Column(db.Integer)
+    photo_url = db.Column(db.Integer, nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
-    park_id = db.Column(db.Integer, db.ForeignKey('park_table.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'), nullable=False)
+    park_id = db.Column(db.Integer, db.ForeignKey('park_table.id'), nullable=False)
 
     user = db.relationship('User', back_populates='posts')
     park = db.relationship('Park', back_populates='posts')
@@ -94,8 +94,8 @@ class Comment(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     comment_text = db.Column(db.String(255), nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('post_table.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post_table.id'), nullable=False)
 
     user = db.relationship('User', back_populates='comments')
     post = db.relationship('Post', back_populates='comments')
