@@ -37,14 +37,6 @@ function PostDetails({ user, post, setSelectedPost }) {
   return (
     <div>
     <button className="bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4" onClick={() => setSelectedPost(null)}>Go back</button>
-
-
-import React from "react";
-
-function PostDetails({ post, setSelectedPost }) {
-  return (
-    <div>
-      <button onClick={() => setSelectedPost(null)}>Go back</button>
       <h1 className="text-2xl font-bold text-red-500">{post.title}</h1>
       <img src={post.photo_url} alt={post.title} className="mt-4 rounded" />
       {editMode ? 
