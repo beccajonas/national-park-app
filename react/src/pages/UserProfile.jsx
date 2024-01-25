@@ -83,7 +83,7 @@ function UserProfile({ user }) {
           .then((res) => res.json())
           .then((data) => setUserPosts(data.posts))
           .catch((error) => console.error("Error fetching posts:", error));
-      }, [selectedPost]);
+      }, [selectedPost, addPhoto]);
 
       function handlePhotoClick(clickedPost) {
         setSelectedPost(clickedPost);
