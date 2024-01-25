@@ -126,7 +126,6 @@ function UserProfile({ user }) {
           })
           .catch((error) => {
             console.error('Error uploading post:', error);
-            // Handle error, show error message, etc.
           });
       }
       
