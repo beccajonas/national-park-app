@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import CommentDisplay from './CommentDisplay';
 
 function PostDetails({ user, post, setSelectedPost }) {
 	const [editMode, setEditMode] = useState(false);
 	const [caption, setCaption] = useState(post.caption);
 	const [editedPost, setEditedPost] = useState(post);
+	const [comments, setComments] = useState(post.comments);
 
 	useEffect(() => {
 		fetch(`/api/posts/${post.id}`)
@@ -39,6 +41,11 @@ function PostDetails({ user, post, setSelectedPost }) {
 				onClick={() => setSelectedPost(null)}>
 				Go back
 			</button>
+			<button
+				className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-1'
+				onClick={handleEditButtonClick}>
+				{editMode ? 'Save' : 'Edit'}
+			</button>
 			<div>
 				<img
 					src={post.photo_url}
@@ -62,12 +69,17 @@ function PostDetails({ user, post, setSelectedPost }) {
 				<p className='font-sans text-md font-semibold text-green-700'>
 					💛 {post.likes} Likes
 				</p>
-				<button
-					className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4'
-					onClick={handleEditButtonClick}>
-					{editMode ? 'Save' : 'Edit'}
-				</button>
-				<div>{post.comments}</div>
+				<div>
+					<p className='font-sans text-green-900'>
+						<em class='font-italic'>Comments:</em>
+					</p>
+					{comments.map((comment) => (
+						<CommentDisplay
+							key={comment.id}
+							comment={comment}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	);
