@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const CommentSection = ({ postId, userId, isLoggedIn }) => {
+const CommentSection = ({ postId, userId }) => {
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState({});
   const [newCommentText, setNewCommentText] = useState("");
@@ -34,7 +34,7 @@ const CommentSection = ({ postId, userId, isLoggedIn }) => {
     try {
       const response = await fetch("/api/users");
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`); // Fixed syntax error here
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
       const usersMap = data.reduce((acc, user) => {
@@ -89,28 +89,29 @@ const CommentSection = ({ postId, userId, isLoggedIn }) => {
 
   return (
     <div className="comment-section">
-      {isLoggedIn ? (
-        <form onSubmit={handleCommentSubmit} className="comment-form">
-          <textarea
-            value={newCommentText}
-            onChange={(e) => setNewCommentText(e.target.value)} // Fixed syntax error here
-            placeholder="Write a comment..."
-            required
-            className="comment-textarea bg-transparent w-full text-black focus:outline-none"
-          />
-          <button type="submit" className="comment-submit mt-2 font-bold">
-            Post
-          </button>
-        </form>
-      ) : (
-        <p>Please log in to comment.</p>
-      )}
+      <form onSubmit={handleCommentSubmit} className="comment-form">
+        <textarea
+          value={newCommentText}
+          onChange={(e) => setNewCommentText(e.target.value)}
+          placeholder="Write a comment..."
+          required
+          className="comment-textarea bg-transparent w-full text-black focus:outline-none text-center"
+        />
+        <button type="submit" className="comment-submit mt-2 font-bold">
+          Post
+        </button>
+      </form>
       {isLoading ? (
         <p>Loading comments...</p>
       ) : comments.length > 0 ? (
         <ul>
           {comments.map((comment) => (
-            <li key={comment.id}>
+            <li
+              key={comment.id}
+              style={{
+                paddingLeft: comment.user_id === userId ? "9px" : "35px",
+              }}
+            >
               <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
               {comment.user_id === userId && (
                 <button onClick={() => handleDeleteComment(comment.id)}>
@@ -129,8 +130,7 @@ const CommentSection = ({ postId, userId, isLoggedIn }) => {
 
 CommentSection.propTypes = {
   postId: PropTypes.number.isRequired,
-  userId: PropTypes.number,
-  isLoggedIn: PropTypes.bool.isRequired,
+  userId: PropTypes.number.isRequired,
 };
 
 export default CommentSection;
