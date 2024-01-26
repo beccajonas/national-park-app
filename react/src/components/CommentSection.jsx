@@ -17,9 +17,7 @@ const CommentSection = ({ postId, userId }) => {
   const fetchComments = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `/api/comments/post/${postId}`
-      );
+      const response = await fetch(`/api/comments/post/${postId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -77,12 +75,9 @@ const CommentSection = ({ postId, userId }) => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      const response = await fetch(
-        `/api/comments/${commentId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -100,7 +95,7 @@ const CommentSection = ({ postId, userId }) => {
           onChange={(e) => setNewCommentText(e.target.value)}
           placeholder="Write a comment..."
           required
-          className="comment-textarea bg-transparent w-full text-black focus:outline-none"
+          className="comment-textarea bg-transparent w-full text-black focus:outline-none text-center"
         />
         <button type="submit" className="comment-submit mt-2 font-bold">
           Post
@@ -111,7 +106,12 @@ const CommentSection = ({ postId, userId }) => {
       ) : comments.length > 0 ? (
         <ul>
           {comments.map((comment) => (
-            <li key={comment.id}>
+            <li
+              key={comment.id}
+              style={{
+                paddingLeft: comment.user_id === userId ? "9px" : "35px",
+              }}
+            >
               <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
               {comment.user_id === userId && (
                 <button onClick={() => handleDeleteComment(comment.id)}>
