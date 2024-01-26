@@ -3,6 +3,7 @@ import '../../src/index.css';
 import PhotoGridItem from '../components/PhotoGridItem';
 import PostDetails from '../components/PostDetails';
 import NewPhotoForm from '../components/NewPhotoForm';
+import FollowerDisplay from '../components/FollowerDisplay';
 
 function UserProfile({ user }) {
 	const [userPosts, setUserPosts] = useState([]);
@@ -11,6 +12,7 @@ function UserProfile({ user }) {
 	const [profilePic, setProfilePic] = useState('');
 	const [bio, setBio] = useState('');
 	const [followers, setFollowers] = useState([]);
+	const [seeFollowers, setSeeFollowers] = useState(false);
 
 	useEffect(() => {
 		fetch(`/api/users/${user.id}`)
@@ -26,6 +28,11 @@ function UserProfile({ user }) {
 
 	function handlePhotoClick(clickedPost) {
 		setSelectedPost(clickedPost);
+	}
+
+	function handleFollowerListClick() {
+		setSeeFollowers(true);
+		console.log('click');
 	}
 
 	function handleAddPhotoClick() {
@@ -45,37 +52,53 @@ function UserProfile({ user }) {
 					📸 {user.username}'s Profile
 				</h1>
 			</div>
-			<p className='font-sans font-bold text-green-700 mb-4'>
-				{bio} | {userPosts.length} posts | {followers.length} followers
-			</p>
-			{selectedPost ? null : (
-				<button
-					className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mb-4'
-					onClick={handleAddPhotoClick}>
-					{addPhoto ? 'Go back' : 'Add photo'}
-				</button>
-			)}
-			{addPhoto ? (
-				<NewPhotoForm user={user} />
-			) : selectedPost ? (
-				<PostDetails
-					post={selectedPost}
-					setSelectedPost={setSelectedPost}
-					user={user}
+			<div className='flex items-center'>
+				<p className='font-sans font-bold text-green-700 mb-4'>{bio} |</p>
+				<p className='font-sans font-bold text-green-700 mb-4 ml-1'>
+					{userPosts.length} posts |
+				</p>
+				<p
+					onClick={() => handleFollowerListClick()}
+					className='font-sans font-bold text-green-700 mb-4 ml-1'>
+					{followers.length} followers
+				</p>
+			</div>
+			{seeFollowers ? (
+				<FollowerDisplay
+					followers={followers}
+					setSeeFollowers={setSeeFollowers}
 				/>
 			) : (
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center'>
-					{userPosts.map((post) => (
-						<PhotoGridItem
-							key={post.id}
-							post={post}
-							handlePhotoClick={handlePhotoClick}
+				<>
+					{selectedPost ? null : (
+						<button
+							className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mb-4'
+							onClick={handleAddPhotoClick}>
+							{addPhoto ? 'Go back' : 'Add photo'}
+						</button>
+					)}
+					{addPhoto ? (
+						<NewPhotoForm user={user} />
+					) : selectedPost ? (
+						<PostDetails
+							post={selectedPost}
+							setSelectedPost={setSelectedPost}
+							user={user}
 						/>
-					))}
-				</div>
+					) : (
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center'>
+							{userPosts.map((post) => (
+								<PhotoGridItem
+									key={post.id}
+									post={post}
+									handlePhotoClick={handlePhotoClick}
+								/>
+							))}
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	);
 }
-
 export default UserProfile;
