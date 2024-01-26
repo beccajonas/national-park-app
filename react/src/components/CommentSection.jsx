@@ -1,5 +1,3 @@
-// CommentSection.jsx
-
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -8,6 +6,7 @@ const CommentSection = ({ postId, userId }) => {
   const [users, setUsers] = useState({});
   const [newCommentText, setNewCommentText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     fetchComments();
@@ -44,6 +43,13 @@ const CommentSection = ({ postId, userId }) => {
       setUsers(usersMap);
     } catch (error) {
       console.error("Error fetching users:", error);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleCommentSubmit(e);
     }
   };
 
@@ -93,11 +99,16 @@ const CommentSection = ({ postId, userId }) => {
         <textarea
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
-          placeholder="Write a comment..."
+          onKeyDown={handleKeyDown}
+          onFocus={() => setIsFocused(true)}
+          placeholder={isFocused ? "" : "Write a comment..."}
           required
           className="comment-textarea bg-transparent w-full text-black focus:outline-none text-center"
         />
-        <button type="submit" className="comment-submit mt-2 font-bold">
+        <button
+          type="submit"
+          className="bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full"
+        >
           Post
         </button>
       </form>
@@ -112,7 +123,12 @@ const CommentSection = ({ postId, userId }) => {
                 paddingLeft: comment.user_id === userId ? "9px" : "35px",
               }}
             >
-              <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
+              <strong className="mr-2">{users[comment.user_id]}:</strong>{" "}
+              {/* Added margin-right here */}
+              <span className="comment-text mr-4">
+                {comment.comment_text}
+              </span>{" "}
+              {/* Added margin-right here */}
               {comment.user_id === userId && (
                 <button onClick={() => handleDeleteComment(comment.id)}>
                   Delete

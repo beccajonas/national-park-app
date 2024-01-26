@@ -26,12 +26,15 @@ const ParkProfiles = () => {
       try {
         const response = await fetch(`/api/posts/park/${id}`);
         const data = await response.json();
-        setPosts(data);
+
         const heartClickedInit = {};
         data.forEach((post) => {
-          heartClickedInit[post.id] = false;
+          const liked = localStorage.getItem(`liked-${post.id}`) === "true";
+          heartClickedInit[post.id] = liked;
         });
         setHeartClicked(heartClickedInit);
+
+        setPosts(data);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -62,6 +65,8 @@ const ParkProfiles = () => {
           )
         );
         setHeartClicked({ ...heartClicked, [postId]: !isLiked });
+
+        localStorage.setItem(`liked-${postId}`, !isLiked);
       }
     } catch (error) {
       console.error("Error updating likes:", error);
@@ -74,10 +79,10 @@ const ParkProfiles = () => {
         <div>
           <h3 className="photo-title text-2xl font-semibold mb-3">
             {parkData.name}
-          </h3>{" "}
+          </h3>
           <p className="photo-description text-lg mb-4">
             {parkData.description}
-          </p>{" "}
+          </p>
           {parkData.imageUrl && (
             <img
               src={parkData.imageUrl}
@@ -98,7 +103,6 @@ const ParkProfiles = () => {
                 </div>
                 <p className="photo-caption text-lg mb-2">{post.caption}</p>
                 <div className="flex items-center justify-center mb-2">
-                  {" "}
                   <Heart
                     isClick={heartClicked[post.id]}
                     onClick={() => handleLike(post.id)}
