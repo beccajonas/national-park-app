@@ -46,11 +46,13 @@ function PostDetails({ user, post, setSelectedPost, handlePhotoClick }) {
 			/>
 			{editMode ? (
 				<input
-					type='text'
-					className='textare'
-					value={caption}
-					onChange={(e) => setCaption(e.target.value)}
-				/>
+				type='text'
+				rows="2" 
+				className="block p-1 w-full text-m font-sans text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-700"
+				placeholder="Write your thoughts here..."
+				value={caption}
+				onChange={(e) => setCaption(e.target.value)}
+			  />
 			) : (
 				<p className='mt-4 text-green-700 font-semibold font-sans'>{caption}</p>
 			)}

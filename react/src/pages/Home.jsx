@@ -68,7 +68,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 			})
 			.catch((error) => {
 				console.error(error.message);
-				alert(error.message);
+				setSignupFail(true);
 			});
 	}
 
@@ -78,12 +78,12 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 		</div>
 	) : isReturningUser ? (
 		<div>
-			<h1>Welcome to Park Lens!</h1>
+			<h1 className='font-black text-green-800 '>Welcome to Park Lens!</h1>
 			<form onSubmit={handleSubmit}>
 				<input
 					type='text'
 					placeholder='Username'
-					className='input-field'
+					className='block p-1 w-50 text-m font-sans text-green-800 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='username'
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
@@ -91,19 +91,19 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 				<input
 					type='password'
 					placeholder='Password'
-					className='input-field'
+					className='block p-1 w-50 text-m font-sans text-green-800 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='password'
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<button
 					type='submit'
-					className='action-button'>
+					className='bg-green-700 hover:bg-yellow-500 text-white font-sans py-2 px-4 rounded-full'>
 					Login
 				</button>
 				<button
 					onClick={handleReturningUser}
-					className='action-button'>
+					className='bg-green-700 hover:bg-yellow-500 text-white font-sans py-2 px-4 rounded-full'>
 					Create account
 				</button>
 			</form>
@@ -115,12 +115,12 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 		</div>
 	) : (
 		<div>
-			<h1>Welcome to Park Lens!</h1>
+			<h1 className='font-sans'>Welcome to Park Lens!</h1>
 			<form onSubmit={handleSignUp}>
 				<input
 					type='text'
 					placeholder='First Name'
-					className='input-field'
+					className='block p-1 w-50 text-m font-sans text-green-800 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='firstName'
 					value={firstName}
 					onChange={(e) => setFirstName(e.target.value)}
@@ -128,7 +128,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 				<input
 					type='text'
 					placeholder='Last Name'
-					className='input-field'
+					className='block p-1 w-50 text-m font-sans text-green-800 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='lastName'
 					value={lastName}
 					onChange={(e) => setLastName(e.target.value)}
@@ -136,7 +136,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 				<input
 					type='text'
 					placeholder='Username'
-					className='input-field'
+					className='block p-1 w-50 text-m font-sans text-green-800 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='username'
 					value={signupUsername}
 					onChange={(e) => setSignupUsername(e.target.value)}
@@ -144,7 +144,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 				<input
 					type='password'
 					placeholder='Password'
-					className='input-field'
+					className='block p-1 w-50 text-m font-sans text-green-800 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='password'
 					value={signupPassword}
 					onChange={(e) => setSignupPassword(e.target.value)}
@@ -153,12 +153,12 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
 			<button
 				onClick={handleSignUp}
 				type='submit'
-				className='action-button'>
+				className='bg-green-700 hover:bg-yellow-500 text-white font-sans py-2 px-4 rounded-full mt-4'>
 				Signup
 			</button>
 			<button
 				onClick={handleReturningUser}
-				className='action-button'>
+				className='bg-green-700 hover:bg-yellow-500 text-white font-sans py-2 px-4 rounded-full m-4'>
 				Signin
 			</button>
 			{signupFail && (

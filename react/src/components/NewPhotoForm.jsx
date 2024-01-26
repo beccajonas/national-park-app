@@ -8,6 +8,7 @@ function NewPhotoForm({ user }) {
 	const [file, setFile] = useState(null);
 	const [successMessage, setSuccessMessage] = useState('');
 	const [failMessage, setFailMessage] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	const parks = [
 		'Arches National Park',
@@ -76,6 +77,7 @@ function NewPhotoForm({ user }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		setLoading(true);
 
 		const formData = new FormData();
 		formData.append('file', file);
@@ -96,6 +98,7 @@ function NewPhotoForm({ user }) {
 				if (!response.ok) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
+
 				return response.json();
 			})
 			.then((data) => {
@@ -109,6 +112,12 @@ function NewPhotoForm({ user }) {
 					'Post failed. File cannot be read. Must select a park. Try again.'
 				);
 				setSuccessMessage('');
+			})
+			.finally(() => {
+				setLoading(false);
+				setCaption('');
+				setSelectedPark('');
+				setFile(null);
 			});
 	}
 
@@ -120,14 +129,15 @@ function NewPhotoForm({ user }) {
 					accept='image/png, image/jpeg'
 					name='photo'
 					className='block mb-3 text-sm text-green-700
-          file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
-          file:bg-yellow-500 file:text-green-700 file:hover:bg-green-700 file:hover:text-yellow-500'
+					file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
+					file:bg-yellow-500 file:text-green-700 file:hover:bg-green-700 file:hover:text-yellow-500'
 					onChange={(e) => setFile(e.target.files[0])}
 				/>
 				<input
 					type='text'
 					placeholder='Caption'
-					className='input-field mb-2 resize-y'
+					rows='2'
+					className='block p-1 w-full text-m font-sans text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-700'
 					name='caption'
 					value={caption}
 					onChange={(e) => setCaption(e.target.value)}
@@ -135,7 +145,7 @@ function NewPhotoForm({ user }) {
 				<select
 					value={selectedPark}
 					onChange={(e) => setSelectedPark(e.target.value)}
-					className='input-field mb-2'>
+					className='block py-2.5 px-0 w-full text-sm text-green-700 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-green-700 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer'>
 					<option
 						value=''
 						disabled>
@@ -152,17 +162,20 @@ function NewPhotoForm({ user }) {
 				<button
 					type='submit'
 					onClick={handleSubmit}
-					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
-					Post
+					disabled={loading}
+					className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4'>
+					{loading ? 'Posting...' : 'Post'}
 				</button>
 			</form>
 			<h2>
 				{successMessage && (
-					<span className='text-green-500'>{successMessage}</span>
+					<span className='text-green-500 font-sans'>{successMessage}</span>
 				)}
 			</h2>
 			<h2>
-				{failMessage && <span className='text-red-500'>{failMessage}</span>}
+				{failMessage && (
+					<span className='text-red-500 font-sans'>{failMessage}</span>
+				)}
 			</h2>
 		</div>
 	);
