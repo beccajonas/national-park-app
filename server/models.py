@@ -33,7 +33,7 @@ follower_relationship = db.Table(
 class User(db.Model, SerializerMixin):
     __tablename__ = 'user_table'
 
-    serialize_rules = ['-comments', '-followers.posts', '-followers.followers','-followers.password', '-posts.comments', '-posts.user']
+    serialize_rules = ['-comments', '-followers.posts', '-followers.followers','-followers.password', '-posts.user']
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True)
@@ -60,7 +60,7 @@ class User(db.Model, SerializerMixin):
 class Post(db.Model, SerializerMixin):
     __tablename__ = 'post_table'
 
-    serialize_rules=['-user.posts','-park.posts', '-comments.post', '-comments.user']
+    serialize_rules=['-user.posts','-park.posts', '-comments.post', '-comments.user.password']
 
     id = db.Column(db.Integer, primary_key=True)
     caption = db.Column(db.String(255), nullable=False)
@@ -95,7 +95,7 @@ class Comment(db.Model, SerializerMixin):
     comment_text = db.Column(db.String(255), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'), nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('post_table.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post_table.id'))
 
     user = db.relationship('User', back_populates='comments')
     post = db.relationship('Post', back_populates='comments')
