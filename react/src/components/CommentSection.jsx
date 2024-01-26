@@ -1,5 +1,3 @@
-// CommentSection.jsx
-
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -44,6 +42,13 @@ const CommentSection = ({ postId, userId }) => {
       setUsers(usersMap);
     } catch (error) {
       console.error("Error fetching users:", error);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleCommentSubmit(e);
     }
   };
 
@@ -93,6 +98,7 @@ const CommentSection = ({ postId, userId }) => {
         <textarea
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder="Write a comment..."
           required
           className="comment-textarea bg-transparent w-full text-black focus:outline-none text-center"
