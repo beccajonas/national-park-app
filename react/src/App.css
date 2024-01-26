@@ -183,3 +183,7 @@ nav ul li a:hover {
 .user-comment {
   margin-bottom: 20px;
 }
+
+.authentication-container {
+  padding-top: 20px;
+}

@@ -74,6 +74,7 @@ const CommentSection = ({ postId, userId }) => {
       const newComment = await response.json();
       setComments([...comments, newComment]);
       setNewCommentText("");
+      setIsFocused(false);
     } catch (error) {
       console.error("Error posting comment:", error);
     }
@@ -124,13 +125,12 @@ const CommentSection = ({ postId, userId }) => {
               }}
             >
               <strong className="mr-2">{users[comment.user_id]}:</strong>{" "}
-              {/* Added margin-right here */}
-              <span className="comment-text mr-4">
-                {comment.comment_text}
-              </span>{" "}
-              {/* Added margin-right here */}
+              <span className="comment-text mr-4">{comment.comment_text}</span>{" "}
               {comment.user_id === userId && (
-                <button onClick={() => handleDeleteComment(comment.id)}>
+                <button
+                  onClick={() => handleDeleteComment(comment.id)}
+                  style={{ fontStyle: "italic" }}
+                >
                   Delete
                 </button>
               )}
