@@ -101,12 +101,14 @@ const CommentSection = ({ postId, userId }) => {
           onChange={(e) => setNewCommentText(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={() => setIsFocused(true)}
-          // onBlur={() => setIsFocused(newCommentText !== "")}
           placeholder={isFocused ? "" : "Write a comment..."}
           required
           className="comment-textarea bg-transparent w-full text-black focus:outline-none text-center"
         />
-        <button type="submit" className="comment-submit mt-2 font-bold">
+        <button
+          type="submit"
+          className="bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full"
+        >
           Post
         </button>
       </form>
@@ -121,7 +123,12 @@ const CommentSection = ({ postId, userId }) => {
                 paddingLeft: comment.user_id === userId ? "9px" : "35px",
               }}
             >
-              <strong>{users[comment.user_id]}:</strong> {comment.comment_text}
+              <strong className="mr-2">{users[comment.user_id]}:</strong>{" "}
+              {/* Added margin-right here */}
+              <span className="comment-text mr-4">
+                {comment.comment_text}
+              </span>{" "}
+              {/* Added margin-right here */}
               {comment.user_id === userId && (
                 <button onClick={() => handleDeleteComment(comment.id)}>
                   Delete
