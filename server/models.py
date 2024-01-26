@@ -94,7 +94,7 @@ class Comment(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     comment_text = db.Column(db.String(255), nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post_table.id'))
 
     user = db.relationship('User', back_populates='comments')
