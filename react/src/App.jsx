@@ -99,10 +99,7 @@ Authentication
           />
           <Route path="/about" element={<About />} />
           <Route path="/parks/:id" element={<ParkProfiles />} />{" "}
-          {/* Updated route to include park ID */}
           <Route path="/search-parks" element={<SearchParks />} />{" "}
-          {/* Optional: Added route for SearchParks */}
-          {/* You can add more routes here as needed */}
         </Routes>
       </div>
     </Router>
