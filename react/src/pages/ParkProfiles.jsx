@@ -27,7 +27,6 @@ const ParkProfiles = () => {
         const response = await fetch(`/api/posts/park/${id}`);
         const data = await response.json();
 
-        // Check localStorage for liked posts
         const heartClickedInit = {};
         data.forEach((post) => {
           const liked = localStorage.getItem(`liked-${post.id}`) === "true";
