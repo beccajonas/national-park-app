@@ -6,6 +6,7 @@ const CommentSection = ({ postId, userId }) => {
   const [users, setUsers] = useState({});
   const [newCommentText, setNewCommentText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     fetchComments();
@@ -99,7 +100,9 @@ const CommentSection = ({ postId, userId }) => {
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Write a comment..."
+          onFocus={() => setIsFocused(true)}
+          // onBlur={() => setIsFocused(newCommentText !== "")}
+          placeholder={isFocused ? "" : "Write a comment..."}
           required
           className="comment-textarea bg-transparent w-full text-black focus:outline-none text-center"
         />
