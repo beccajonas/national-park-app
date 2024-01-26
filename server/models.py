@@ -41,6 +41,7 @@ class User(db.Model, SerializerMixin):
     last_name = db.Column(db.String)
     password = db.Column(db.String, nullable=False)
     bio = db.Column(db.String)
+    profile_pic_url = db.Column(db.String)
 
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')

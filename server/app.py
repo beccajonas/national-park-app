@@ -230,7 +230,7 @@ def patch_post_likes(id):
 
 # Delete post
 @app.delete("/api/posts/<int:id>")
-def delete_post_by_id(id):
+def delete_post(id):
     post = db.session.get(Post, id)
     if not post:
         return {"error": "post not found"}, 404

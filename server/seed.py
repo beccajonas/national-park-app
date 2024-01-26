@@ -25,7 +25,8 @@ if __name__ == "__main__":
                 first_name=user_data.get('first_name'),
                 last_name=user_data.get('last_name'),
                 password=bcrypt.generate_password_hash(user_data.get('password')),
-                bio=user_data.get('bio')
+                bio=user_data.get('bio'),
+                profile_pic_url=user_data.get('profile_pic_url')
             )
             user_data_list.append(u)
         db.session.add_all(user_data_list)
