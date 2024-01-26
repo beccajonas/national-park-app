@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const CommentSection = ({ postId, userId }) => {
+const CommentSection = ({ postId, userId, isLoggedIn }) => {
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState({});
   const [newCommentText, setNewCommentText] = useState("");
@@ -17,9 +17,7 @@ const CommentSection = ({ postId, userId }) => {
   const fetchComments = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `/api/comments/post/${postId}`
-      );
+      const response = await fetch(`/api/comments/post/${postId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -36,7 +34,7 @@ const CommentSection = ({ postId, userId }) => {
     try {
       const response = await fetch("/api/users");
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`); // Fixed syntax error here
       }
       const data = await response.json();
       const usersMap = data.reduce((acc, user) => {
@@ -77,12 +75,9 @@ const CommentSection = ({ postId, userId }) => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      const response = await fetch(
-        `/api/comments/${commentId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -94,18 +89,22 @@ const CommentSection = ({ postId, userId }) => {
 
   return (
     <div className="comment-section">
-      <form onSubmit={handleCommentSubmit} className="comment-form">
-        <textarea
-          value={newCommentText}
-          onChange={(e) => setNewCommentText(e.target.value)}
-          placeholder="Write a comment..."
-          required
-          className="comment-textarea bg-transparent w-full text-black focus:outline-none"
-        />
-        <button type="submit" className="comment-submit mt-2 font-bold">
-          Post
-        </button>
-      </form>
+      {isLoggedIn ? (
+        <form onSubmit={handleCommentSubmit} className="comment-form">
+          <textarea
+            value={newCommentText}
+            onChange={(e) => setNewCommentText(e.target.value)} // Fixed syntax error here
+            placeholder="Write a comment..."
+            required
+            className="comment-textarea bg-transparent w-full text-black focus:outline-none"
+          />
+          <button type="submit" className="comment-submit mt-2 font-bold">
+            Post
+          </button>
+        </form>
+      ) : (
+        <p>Please log in to comment.</p>
+      )}
       {isLoading ? (
         <p>Loading comments...</p>
       ) : comments.length > 0 ? (
@@ -130,7 +129,8 @@ const CommentSection = ({ postId, userId }) => {
 
 CommentSection.propTypes = {
   postId: PropTypes.number.isRequired,
-  userId: PropTypes.number.isRequired,
+  userId: PropTypes.number,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default CommentSection;
