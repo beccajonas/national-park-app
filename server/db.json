@@ -2,83 +2,93 @@
 	"user_table": [
 		{
 			"id": 1,
-			"username": "user1",
-			"first_name": "John",
-			"last_name": "Doe",
+			"username": "ayoitstimmy",
+			"first_name": "Timmy",
+			"last_name": "Turner",
 			"password": "password1",
-			"bio": "Bio for user1"
+			"bio": "Livin with my fairly odd parents. Taking cool pix. ",
+			"profile_pic_url": "https://img.buzzfeed.com/buzzfeed-static/static/2018-08/1/16/enhanced/buzzfeed-prod-web-06/mobile-1403-1533156201-10.jpg"
 		},
 		{
 			"id": 2,
-			"username": "user2",
-			"first_name": "Jane",
-			"last_name": "Doe",
+			"username": "tbirdyyy",
+			"first_name": "Tweety",
+			"last_name": "Bird",
 			"password": "password2",
-			"bio": "Bio for user2"
+			"bio": "Tweeting before it was cool.",
+			"profile_pic_url": "https://www.animaker.com/hub/wp-content/uploads/2023/03/Tweety_SVG.png"
 		},
 		{
 			"id": 3,
-			"username": "user3",
-			"first_name": "Bob",
-			"last_name": "Smith",
+			"username": "saltNpeppaPIG",
+			"first_name": "Peppa",
+			"last_name": "Pig",
 			"password": "password3",
-			"bio": "Bio for user3"
+			"bio": "Your favorite british hog.",
+			"profile_pic_url": "https://tiermaker.com/images/chart/chart/childrens-cartoon-characters--712937/3840jpg.png"
 		},
 		{
 			"id": 4,
-			"username": "user4",
-			"first_name": "Alice",
-			"last_name": "Johnson",
+			"username": "poohbear",
+			"first_name": "Pooh",
+			"last_name": "Bear",
 			"password": "password4",
-			"bio": "Bio for user4"
+			"bio": "Here for honey.",
+			"profile_pic_url": "https://variety.com/wp-content/uploads/2016/05/pooh.jpg?w=700"
 		},
 		{
 			"id": 5,
-			"username": "user5",
-			"first_name": "Charlie",
-			"last_name": "Brown",
+			"username": "shrek",
+			"first_name": "Shrek",
+			"last_name": "da Ogre",
 			"password": "password5",
-			"bio": "Bio for user5"
+			"bio": "🧅🧅🧅",
+			"profile_pic_url": "https://miro.medium.com/v2/resize:fit:1200/1*LpxLQj3xgPwMaUjaM3NW7g.jpeg"
 		},
 		{
 			"id": 6,
-			"username": "user6",
-			"first_name": "Eva",
-			"last_name": "Davis",
+			"username": "heyarnold",
+			"first_name": "Arnold",
+			"last_name": "🏈",
 			"password": "password6",
-			"bio": "Bio for user6"
+			"bio": "Yo",
+			"profile_pic_url": "https://s.yimg.com/ny/api/res/1.2/QEwfWa8CYJPLvJo5fbtI2g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MA--/https://media.zenfs.com/en/buzzfeed_articles_778/802503e1dc646b38691c076e7baf69d9"
 		},
 		{
 			"id": 7,
-			"username": "user7",
-			"first_name": "Frank",
-			"last_name": "Wilson",
+			"username": "pennyp",
+			"first_name": "Penny",
+			"last_name": "Proud",
 			"password": "password7",
-			"bio": "Bio for user7"
+			"bio": "Taking pics.",
+			"profile_pic_url": "https://www.billboard.com/wp-content/uploads/2022/02/161710_104_0320_3d7aeb52.jpeg?w=942&h=623&crop=1"
 		},
 		{
 			"id": 8,
-			"username": "user8",
-			"first_name": "Grace",
-			"last_name": "Moore",
+			"username": "arthurreadz",
+			"first_name": "Arthur",
+			"last_name": "Read",
 			"password": "password8",
-			"bio": "Bio for user8"
+			"bio": "Your favorite ardvark",
+			"profile_pic_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Arthur_Read.svg/800px-Arthur_Read.svg.png"
 		},
 		{
 			"id": 9,
-			"username": "user9",
-			"first_name": "Henry",
-			"last_name": "Lee",
+			"username": "oceanprincess",
+			"first_name": "Moana",
+			"last_name": "Waialiki",
 			"password": "password9",
-			"bio": "Bio for user9"
+			"bio": "The ocean chose me.",
+			"profile_pic_url": "https://static.wikia.nocookie.net/disney/images/7/7d/Profile_-_Moana.png/revision/latest?cb=20190312030033"
 		},
 		{
 			"id": 10,
 			"username": "user10",
-			"first_name": "Isabel",
-			"last_name": "Baker",
+			"first_name": "Mulan",
+			"last_name": "Hua Mulan",
 			"password": "password10",
-			"bio": "Bio for user10"
+			"bio": "Aka Ping",
+			"profile_pic_url": "https://m.media-amazon.com/images/M/MV5BODg1OTczMWEtNTU3MS00OTUzLThjODEtNDg1MWQwZmExYmFlXkEyXkFqcGdeQWFybm8@._V1_QL75_UX500_CR0,0,500,281_.jpg"
 		}
 	],
 	"park_table": [
