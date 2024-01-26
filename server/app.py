@@ -227,6 +227,25 @@ def patch_post_likes(id):
 
     return post.to_dict(rules=['-user']), 201 
 
+# Patch a post
+@app.patch("/api/users/<int:id>")
+def patch_user(id):
+    data = request.json
+    user = db.session.get(User, id)
+
+    for key in data:
+        setattr(user, key, data[key])
+    
+    db.session.add(user)
+    db.session.commit()
+
+    return user.to_dict(rules=['-password',
+        '-followers.bio',
+        '-followers.first_name',
+        '-followers.last_name',
+        '-followers.username',
+        '-posts.park']), 201 
+
 # Delete post
 @app.delete("/api/posts/<int:id>")
 def delete_post(id):
