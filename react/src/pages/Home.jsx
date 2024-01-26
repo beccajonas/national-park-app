@@ -164,7 +164,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
               )}
             </div>
           )}
-          <div className="video-container">
+          {/* <div className="video-container">
             <iframe
               width="1200"
               height="660"
@@ -174,7 +174,7 @@ function Home({ user, handleLogin, isLoggedin, loginFailed, setLoginFailed }) {
               allowfullscreen
               title="Park Lens Video"
             ></iframe>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
