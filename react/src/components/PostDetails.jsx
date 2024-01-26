@@ -51,7 +51,7 @@ function PostDetails({ user, post, setSelectedPost }) {
 	return (
 		<div>
 			<button
-				className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4'
+				className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mb-3'
 				onClick={() => setSelectedPost(null)}>
 				Go back
 			</button>
@@ -76,7 +76,7 @@ function PostDetails({ user, post, setSelectedPost }) {
 							onChange={(e) => setCaption(e.target.value)}
 						/>
 					) : (
-						<p className='mt-4 text-green-700 font-semibold font-sans'>
+						<p className='mt-2 text-green-700 font-semibold font-sans'>
 							{caption}
 						</p>
 					)}
@@ -87,7 +87,6 @@ function PostDetails({ user, post, setSelectedPost }) {
 						<p className='font-sans text-green-900'>
 							<em class='font-italic'>Comments:</em>
 						</p>
-
 						{comments.map((comment) => (
 							<CommentDisplay
 								key={comment.id}
@@ -96,7 +95,7 @@ function PostDetails({ user, post, setSelectedPost }) {
 						))}
 					</div>
 					<button
-						className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-4'
+						className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mt-1 mb-3'
 						onClick={handleEditButtonClick}>
 						{editMode ? 'Save' : 'Edit'}
 					</button>

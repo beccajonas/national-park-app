@@ -13,7 +13,7 @@ function PhotoGridItem({ post, handlePhotoClick }) {
 		.then((data) => setParkName(data.name));
 
 	return (
-		<div>
+		<div className='transition-transform transform hover:translate-y-1'>
 			<img
 				onClick={handleDetailClick}
 				src={post.photo_url}

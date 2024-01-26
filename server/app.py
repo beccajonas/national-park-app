@@ -163,7 +163,6 @@ def get_users():
         '-followers.bio',
         '-followers.first_name',
         '-followers.last_name',
-        '-followers.username',
         '-posts.comments', 
         '-posts.description', 
         '-posts.id', 

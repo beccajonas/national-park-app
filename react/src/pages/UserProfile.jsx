@@ -44,7 +44,7 @@ function UserProfile({ user }) {
 		<div className='mx-auto max-w-4xl'>
 			<div className='mt-4 mx-auto max-w-4xl pb-4 flex items-center'>
 				<img
-					className='w-20 h-20 rounded object-cover'
+					className='w-20 h-20 rounded-full object-cover'
 					src={profilePic}
 					alt='Medium avatar'
 				/>
@@ -59,20 +59,20 @@ function UserProfile({ user }) {
 				</p>
 				<p
 					onClick={() => handleFollowerListClick()}
-					className='font-sans font-bold text-green-700 mb-4 ml-1'>
+					className='font-sans font-bold text-green-700 hover:text-yellow-500 cursor-pointer mb-4 ml-1'>
 					{followers.length} followers
 				</p>
 			</div>
 			{seeFollowers ? (
 				<FollowerDisplay
-					followers={followers}
+					user={user}
 					setSeeFollowers={setSeeFollowers}
 				/>
 			) : (
 				<>
 					{selectedPost ? null : (
 						<button
-							className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mb-4'
+							className='bg-green-700 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full mb-3'
 							onClick={handleAddPhotoClick}>
 							{addPhoto ? 'Go back' : 'Add photo'}
 						</button>
@@ -86,7 +86,7 @@ function UserProfile({ user }) {
 							user={user}
 						/>
 					) : (
-						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center'>
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer justify-center items-center'>
 							{userPosts.map((post) => (
 								<PhotoGridItem
 									key={post.id}
