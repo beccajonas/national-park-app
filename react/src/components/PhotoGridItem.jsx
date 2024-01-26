@@ -20,14 +20,15 @@ function PhotoGridItem({ post, handlePhotoClick }) {
 				alt={post.title}
 				className='mt-2 rounded object-cover w-60 h-60'
 			/>
-			<p className='font-sans text-md font-semibold text-green-700'>💛 {post.likes} Likes</p>
+			<p className='font-sans text-md font-semibold text-green-700'>
+				💛 {post.likes} Likes
+			</p>
 			<></>
 			<a
-      href={`http://localhost:5173/parks/${post.park_id}`}
-      className='font-sans text-xs font-semibold text-green-700 hover:underline'
-      >
-      {parkName}
-      </a>
+				href={`http://localhost:5173/parks/${post.park_id}`}
+				className='font-sans text-xs font-semibold text-green-700 hover:text-yellow-600'>
+				{parkName}
+			</a>
 		</div>
 	);
 }
